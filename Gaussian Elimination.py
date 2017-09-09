@@ -1,0 +1,44 @@
+import numpy as np
+arr = np.array([1, 2, 3, 2,
+                0, 4, 1, 1,
+                3, 5, 6, 0,
+                2, 0, 3, 4], np.int32)
+n = 4
+arr = arr.reshape(n, n)
+print(arr)
+print()
+for i in range(0, n):
+    for j in range(i+1, n):
+        if arr[i][i] < arr[j][i]:
+            q = np.array([0, 0, 0, 0], np.int32)
+            q = q.reshape(1, n)
+            q[0] = arr[i]
+            arr[i] = arr[j]
+            arr[j] = q
+            print("q=", q)
+for i in range(0, n-1):
+    for j in range(i+1, n):
+        for k in range(0, n):
+            arr[j][k] = arr[j][k]-arr[j][i]/arr[i][i]*arr[i][k]
+# right side of the equation
+y = np.array([3, 4, 10, 2], np.float16)
+y = y.reshape(n, 1)
+print("matrix after pivotation")
+print(arr)
+print()
+print("y=", y)
+print()
+
+x = np.array([0, 0, 0, 0], np.float16)
+x = x.reshape(n, 1)
+for i in range(n-1, -1, -1):
+    x[i] = y[i]
+    for j in range(i+1, n):
+        if j != i:
+            x[i] = x[i]-arr[i][j]*x[j]
+    x[i] /= arr[i][i]
+print()
+print("x0=", x[3])
+print("x1=", x[2])
+print("x2=", x[1])
+print("x3=", x[0])
