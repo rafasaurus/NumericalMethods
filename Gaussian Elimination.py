@@ -9,7 +9,6 @@ n = 4
 # y is the right side of the linear equation after = sign
 y = np.array([3, 4, 10, 2], np.float16)
 y = y.reshape(n, 1)
-
 arr = arr.reshape(n, n)
 print(arr)
 print()
@@ -30,7 +29,6 @@ for i in range(0, n-1):
             arr[j][k] = arr[j][k]-arr[j][i]/arr[i][i]*arr[i][k]
 print("matrix after pivotation")
 print(arr)
-
 # x is the unknown vector
 x = np.array([0, 0, 0, 0], np.float16)
 x = x.reshape(n, 1)
