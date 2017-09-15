@@ -6,7 +6,6 @@ def sp(arr, n):
         s += arr[k][k]
     return s
 
-
 def nullfinder(pop, n):
     val_ = True
     for o in range(n):
@@ -16,25 +15,8 @@ def nullfinder(pop, n):
                 break
     return val_
 
-
-#def COMPUTE_REGRESSION_X(x1, x2, n):
-#    arr = np.zeros(shape=(3, 3))
-#    arr[0][0] = n
-#    for i in range(n):
-#        arr[0][1] += x1[i]
-#        arr[0][2] += x2[i]
-#        arr[1][1] += np.power(x1[i], 2)
-#        arr[1][2] += x2[i] * x1[i]
-#        arr[2][2] += np.power(x2[i], 2)
-#    arr[1][0] = arr[0][1]
-#    arr[2][1] = arr[1][2]
-#    arr[2][0] = arr[0][2]
-#    return arr
-
 def COMPUTE_REGRESSION_X(muffin, featureRows, featurSize, n): # featureRows =2 featureSize=5
     x = np.zeros(shape=(n, n))
-    print("----------------")
-    print(type(x))
     for i in range(n):
         for j in range(n):
             if i == 0 and j == 0:
@@ -45,10 +27,7 @@ def COMPUTE_REGRESSION_X(muffin, featureRows, featurSize, n): # featureRows =2 f
                 x[i][j] = sumX(muffin[j-1], featureSize)
             #elif i > 0 and j > 0:
             else:
-                debug = muffin[j]
                 x[i][j] = sumXY(muffin[i-1], muffin[j-1], featureSize)
-            #elif i > 1:
-
     return x
 
 def sumXY(arr1,arr2,n):
@@ -63,7 +42,6 @@ def sumX(arr, n):
         sum_ += arr[i]
     return sum_
 
-
 def COMPUTE_REGRESSION_Y_EX(yp, x1, x2, n):  # stands for experimental
     y = np.zeros(3, dtype=float)
     for i in range(n):
@@ -71,7 +49,6 @@ def COMPUTE_REGRESSION_Y_EX(yp, x1, x2, n):  # stands for experimental
         y[1] += yp[i] * x1[i]
         y[2] += yp[i] * x2[i]
     return y
-
 
 def INVERSE_MATRIX(arr, n):
     E = np.matrix(np.identity(n))
