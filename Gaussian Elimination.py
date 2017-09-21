@@ -7,7 +7,7 @@ arr = np.array([1, 2, 3, 2,
 # size of the matrix
 n = 4
 # y is the right side of the linear equation after = sign
-y = np.array([3, 4, 10, 2], np.float16)
+y = np.array([0, 0, 0, 0], np.float16)
 y = y.reshape(n, 1)
 arr = arr.reshape(n, n)
 print(arr)

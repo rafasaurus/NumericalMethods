@@ -1,5 +1,11 @@
 import numpy as np
 
+def mean(arr,n):
+    s=0
+    for i in range(n):
+        s+=arr[i]
+    return s/n
+
 def sp(arr, n):
     s = 0
     for k in range(n):
@@ -73,7 +79,7 @@ def INVERSE_MATRIX(arr, n):
 #
 #-------program-------
 n = 4
-k = 2 #the number of regression features
+k = 2 #the number of regression features --- ազատության աստիճան
 k += 1
 
 featureSize = 5
@@ -85,11 +91,55 @@ arr = np.zeros(shape=(4, 4))
 muffin[0] = np.array([2, 1, 1, 2, 1], np.float)
 muffin[1] = np.array([3, 1, 2, 1, 2], np.float)
 yp = np.array([1, 1, 3, 2, 1], np.float)
+
+
 arr = COMPUTE_REGRESSION_X(muffin, featureRows, featureSize, k)
 print(arr)
-vector = COMPUTE_REGRESSION_Y_EX(yp, muffin[0], muffin[1], 5)
+vector = COMPUTE_REGRESSION_Y_EX(yp, muffin[0], muffin[1], featureSize)
 print("arr=", arr)
 inverse_arr = INVERSE_MATRIX(arr, 3)
 print("vector=\n", vector)
 B = np.matmul(inverse_arr, vector)
 print(B)
+# հաշվառկային y_final
+y_final = np.zeros(shape=(5,1))
+for i in range(featureSize):
+    y_final[i]=B[0]+B[1]*muffin[0][i]+B[2]*muffin[1][i]
+    #print(y_final[i])
+
+#ռեգռեսիայով պայմանավորված միջին քառակուսային շեղումներ
+y_final_mean = mean(y_final,featureSize)
+SSR=0
+for i in range(n):
+    SSR+=(y_final[i]-y_final_mean)*(y_final[i]-y_final_mean)
+print("ռեգռեսիայով պայմանավորված միջին քառակուսային շեղումներ = ",SSR)
+
+#միջին քառակուսային շեղումներ
+SSO = 0
+yp_mean = mean(yp, featureSize)
+for i in range(featureSize):
+    SSO += (yp[i]-yp_mean)*(yp[i]-yp_mean)
+print("SS0  միջին քառակուսային շեղումներ = ", SSO)
+
+#անհամաձայնեցումներով պայմանավորված միջին քառակուսային շեղումներ
+SSE = 0
+#
+for i in range(featureSize):
+    SSE+=(y_final[i] - yp[i])*(y_final[i] - yp[i])
+print("SSE  անհամաձայնեցումներով պայմանավորված միջին քառակուսային շեղումներ = ",SSE)
+
+#ռեգռեսիայով պայմանավորված դիսպերսիան
+MSR = SSR/k
+print("MSR  ռեգռեսիայով պայմանավորված դիսպերսիան = ",MSR)
+
+#մնացորդային դիսպերսիայի վիճակագրական գնահատական, ազատության աստիճանը n-k-1
+sigmaSquared = SSE/(featureSize-k-1)
+print("SIGMASQUARED  մնացորդային դիսպերսիայի վիճակագրական գնահատականը = ",sigmaSquared)
+
+#դետերմինացված գործակից
+RSquared = SSR/SSO
+print("RSQUARED  դետերմինացված գործակից = ", RSquared)
+
+#ֆիշերի չափանիշ
+F = MSR/sigmaSquared
+print("ֆիշերի = ",F)
