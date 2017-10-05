@@ -72,7 +72,7 @@ def INVERSE_MATRIX(arr, n):
         Bn = arr - (P * E)
         arr = np.matmul(static_arr, Bn)
         if nullfinder(arr, n):
-            print("the e  nd")
+            print("the end")
             break
     return print_val
 
@@ -143,3 +143,11 @@ print("RSQUARED  դետերմինացված գործակից = ", RSquared)
 #ֆիշերի չափանիշ
 F = MSR/sigmaSquared
 print("ֆիշերի = ",F)
+
+
+R = np.zeros(shape=(2,2)) #corellation matrix R
+R[0][0]=R[1][1]=1
+R[0][1]=R[1][0]=0.25
+R_inver=INVERSE_MATRIX(R,2)
+
+print(R_inver)
