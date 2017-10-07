@@ -101,7 +101,7 @@ inverse_arr = INVERSE_MATRIX(arr, 3)
 print("vector=\n", vector)
 B = np.matmul(inverse_arr, vector)
 print(B)
-# հաշվառկային y_final
+# հաշվարկային y_final
 y_final = np.zeros(shape=(5,1))
 for i in range(featureSize):
     y_final[i]=B[0]+B[1]*muffin[0][i]+B[2]*muffin[1][i]
@@ -143,11 +143,3 @@ print("RSQUARED  դետերմինացված գործակից = ", RSquared)
 #ֆիշերի չափանիշ
 F = MSR/sigmaSquared
 print("ֆիշերի = ",F)
-
-
-R = np.zeros(shape=(2,2)) #corellation matrix R
-R[0][0]=R[1][1]=1
-R[0][1]=R[1][0]=0.25
-R_inver=INVERSE_MATRIX(R,2)
-
-print(R_inver)

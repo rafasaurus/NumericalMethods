@@ -1,5 +1,5 @@
 import numpy as np
-
+#arajadranq cragir ardyunqner
 def correlation(arr1,arr2, n):
     sum = 0
     for i in range(n):
@@ -63,14 +63,14 @@ def INVERSE_MATRIX(arr, n):
             break
     return print_val
 
-k=2
-featureSize=5
+k=2#feature mount
+featureSize=20
 x = np.zeros(shape=(k, featureSize))
 print("muffin=", x)
 
-x[0] = np.array([2, 1, 1, 1, 1], np.float)
-x[1] = np.array([2, 2, 1, 2, 2], np.float)
-yp = np.array([3, 1, 1, 2, 1], np.float) # y_pordznakan
+x[0] = np.array([2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 3, 1, 1, 2, 1, 2, 1, 2, 2, 2], np.float)
+x[1] = np.array([2, 2, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1], np.float)
+yp = np.array([3, 1, 1, 2, 1, 1, 1, 1, 2, 1 ,2, 1, 2, 2, 2, 2, 1, 1, 1, 1], np.float) # y_pordznakan
 
 yp_mean = mean(yp, featureSize)
 print(yp_mean)
@@ -105,23 +105,79 @@ R0 = np.zeros(shape=(k,1))
 
 
 
-R0[0]= correlation(yDot,xDot[0],featureSize)
-R0[1]= correlation(yDot,xDot[1],featureSize)
+#R0[0]= correlation(yDot,xDot[0],featureSize)
+#R0[1]= correlation(yDot,xDot[1],featureSize)
+for i in range(k):
+    R0[i]=correlation(yDot,xDot[i],featureSize)
+
 print("r01=",R0[0])
 print("r02=",R0[1])
 
 R = np.zeros(shape=(2,2)) #corellation matrix R
 R[0][0]=R[1][1]=1
 R[0][1]=R[1][0]=correlation(xDot[0],xDot[1],featureSize)
-print(R)
 
-R_inver=INVERSE_MATRIX(R,2)
+
+
+
 #----inverse matrix test------
-#R_inver=INVERSE_MATRIX(R,2)
-##A=np.matmul(R_inver, R)
-#pop = np.array([2,1,1,1,
-#                2,3,1,2,
-#                3,3,3,3,
-#                2,1,2,1], np.float)
-#pop = pop.reshape(4,4)
-#p#rint(INVERSE_MATRIX(pop,4))
+R_inver=INVERSE_MATRIX(R,2)
+print("R_inverse = \n",R_inver)
+A=np.matmul(R_inver , R0)
+print("A matrix \n",A)
+
+B = np.zeros(shape=(k+1,1))
+print(B)
+
+B[0] = A[0]*sigma0/sigma1
+B[1] = A[1]*sigma0/sigma2
+B[2] = yp_mean-B[0]*x0_mean-B[1]*x1_mean
+
+print("y-ի տեսքը կլինի  y=",B[0],"+",B[1],"*x1+",B[2],"*x2" )
+
+print(B)
+
+
+
+# հաշվարկային y_final
+y_final = np.zeros(shape=(featureSize,1))
+for i in range(featureSize):
+    y_final[i]=B[0]+B[1]*x[0][i]+B[2]*x[1][i]
+    #print(y_final[i])
+
+#ռեգռեսիայով պայմանավորված միջին քառակուսային շեղումներ
+y_final_mean = mean(y_final,featureSize)
+SSR=0
+for i in range(featureSize):
+    SSR+=(y_final[i]-y_final_mean)*(y_final[i]-y_final_mean)
+print("ռեգռեսիայով պայմանավորված միջին քառակուսային շեղումներ = ",SSR)
+
+#միջին քառակուսային շեղումներ
+SSO = 0
+yp_mean = mean(yp, featureSize)
+for i in range(featureSize):
+    SSO += (yp[i]-yp_mean)*(yp[i]-yp_mean)
+print("SS0  միջին քառակուսային շեղումներ = ", SSO)
+
+#անհամաձայնեցումներով պայմանավորված միջին քառակուսային շեղումներ
+SSE = 0
+#
+for i in range(featureSize):
+    SSE+=(y_final[i] - yp[i])*(y_final[i] - yp[i])
+print("SSE  անհամաձայնեցումներով պայմանավորված միջին քառակուսային շեղումներ = ",SSE)
+
+#ռեգռեսիայով պայմանավորված դիսպերսիան
+MSR = SSR/k
+print("MSR  ռեգռեսիայով պայմանավորված դիսպերսիան = ",MSR)
+
+#մնացորդային դիսպերսիայի վիճակագրական գնահատական, ազատության աստիճանը n-k-1
+sigmaSquared = SSE/(featureSize-k-1)
+print("SIGMASQUARED  մնացորդային դիսպերսիայի վիճակագրական գնահատականը = ",sigmaSquared)
+
+#դետերմինացված գործակից
+RSquared = SSR/SSO
+print("RSQUARED  դետերմինացված գործակից = ", RSquared)
+
+#ֆիշերի չափանիշ
+F = MSR/sigmaSquared
+print("ֆիշերի = ",F)
