@@ -107,7 +107,7 @@ for i in range(featureSize):
     y_final[i]=B[0]+B[1]*muffin[0][i]+B[2]*muffin[1][i]
     #print(y_final[i])
 
-#ռեգռեսիայով պայմանավորված միջին քառակուսային շեղումներ
+#ռեգրեսիայով պայմանավորված միջին քառակուսային շեղումներ
 y_final_mean = mean(y_final,featureSize)
 SSR=0
 for i in range(n):
