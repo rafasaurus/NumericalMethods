@@ -1,17 +1,27 @@
 # finite difference model
 #def computeDiffDepth():# computes optimal depth of model
 import numpy as np
-def mean(arr,n):
-    s=0
-    for i in range(n):
-        s+=arr[i]
-    return s/n
-def standardDevation(z,featureSize,deepness):
-    z_mean=mean(z,featureSize)
+def computeZhat(ANSWER,x,z,featureSize,deepness):
     sum = 0
-    for i in range(deepness,featureSize):
-        sum+=z[i]-z_mean
-    return sum/(featureSize-3*deepness)
+
+    for j in range(deepness * 2):
+        print()
+        for i in range(deepness , featureSize):
+            middle = 0
+            if j%2==0:
+                index = (int)(j/2)
+                middle += ANSWER[j]*x[i-index]
+                print(i-index)
+            else:
+                index = (int)(j / 2)
+                middle += ANSWER[j] * x[i - index]
+        sum = (z[i]-middle)*(z[i]-middle)
+    return sum /(featureSize-3*deepness)
+def standardDevation(z,z_hat,featureSize,depth):
+    sum = 0
+    for i in range(depth,featureSize):
+        sum+=(z[i]-z_hat[i])*(z[i]-z_hat[i])
+    return sum/(featureSize-3*depth)
 def sp(arr, n):
     s = 0
     for k in range(n):
@@ -45,16 +55,16 @@ def INVERSE_MATRIX(arr, n):
             break
     return print_val
 #Computes C matrix using finite difference model
-def computeC(x,z,featureSize,deepness):
-    out = np.zeros(shape=(deepness*2,deepness*2))
-    vector = np.zeros(shape=(deepness * 2))
+def computeC(x,z,featureSize,depth):
+    out = np.zeros(shape=(depth*2,depth*2))
+    vector = np.zeros(shape=(depth * 2))
 
-    for o in range(deepness*2):
-        vectorEven = np.zeros(shape=(deepness))
-        vectorOdd = np.zeros(shape=(deepness))
-        for l in range(0, deepness):#j
+    for o in range(depth*2):
+        vectorEven = np.zeros(shape=(depth))
+        vectorOdd = np.zeros(shape=(depth))
+        for l in range(0, depth):#j
             #print()
-            for k in range(deepness - 1, featureSize):#i
+            for k in range(depth - 1, featureSize):#i
                 if o%2 == 0:
                     index = k - (int)(o / 2)
                     #print(index)
@@ -67,7 +77,7 @@ def computeC(x,z,featureSize,deepness):
         #print("vector Even \n ", vectorEven)
         #print("vector Odd \n ", vectorOdd)
         # this part adds Even and Odd vectors
-        for i in range(deepness * 2):
+        for i in range(depth * 2):
             if i % 2 == 0:
                 index = (int)(i / 2)
                 vector[i] = vectorEven[index]
@@ -78,38 +88,39 @@ def computeC(x,z,featureSize,deepness):
         out[o] = vector
     return out
 #calculates finite differnce model constant vector
-def computeD(x,z,featureSize,deepness):
-    vector = np.zeros(shape=(deepness * 2))
-    for l in range(0, deepness*2):  # j
-        for k in range(deepness - 1, featureSize):  # i
+def computeD(x,z,featureSize,depth):
+    vector = np.zeros(shape=(depth * 2))
+    for l in range(0, depth*2):  # j
+        for k in range(depth - 1, featureSize):  # i
            vector[l]+=z[k]*x[k-l]
     return vector
 
-deepness = 1
+depth = 1
 featureSize = 7
 x = np.array([2, 4, 1, 3, 1, 2, 4], np.float)
 z = np.array([2, 1, 1, 2, 2, 3, 4], np.float)
-z_hat = np.zeros(shape=(4, featureSize))
+z_hat = np.array([0, 0, 0, 0, 0, 0, 0], np.float)
 
 previousStandardDev =1
 while(1):
     print("-------iteration------")
-    C = computeC(x, z, featureSize, deepness)
+    C = computeC(x, z, featureSize, depth)
     print("C = \n",C)
-    C_inverse = INVERSE_MATRIX(C, deepness * 2)
+    C_inverse = INVERSE_MATRIX(C, depth * 2)
     print("C_inverse = \n",C_inverse)
-    D = computeD(x, z, featureSize, deepness)
+    D = computeD(x, z, featureSize, depth)
     print("D= \n", D)
     ANSWER = np.matmul(C_inverse, D)
     print(ANSWER)
-    standardDev = standardDevation(z, featureSize, deepness)
+    computeZhat(ANSWER, x, z, featureSize, depth)
+    standardDev = standardDevation(z,z_hat, featureSize, depth)
     print("standard deviation",standardDev)
-    if (standardDev<=previousStandardDev or deepness == 1):
-        deepness+=1
+    if (standardDev<=previousStandardDev or depth == 1):
+        depth+=1
     else:
         print()
         print("----------conclusion-----------")
-        print("the deepness of the given model with finite difference model is --->",deepness)
-        print("the standard deviation in that deepness is --->",standardDev)
+        print("the depth of the given model with finite difference model is --->",depth-1)
+        print("the standard deviation in that depth is --->",previousStandardDev)
         break
     previousStandardDev = standardDev
