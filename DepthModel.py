@@ -3,25 +3,22 @@
 import numpy as np
 def computeZhat(ANSWER,x,z,featureSize,deepness):
     sum = 0
-
     for j in range(deepness * 2):
-        print()
         for i in range(deepness , featureSize):
             middle = 0
             if j%2==0:
                 index = (int)(j/2)
                 middle += ANSWER[j]*x[i-index]
-                print(i-index)
             else:
                 index = (int)(j / 2)
                 middle += ANSWER[j] * x[i - index]
         sum = (z[i]-middle)*(z[i]-middle)
-    return sum /(featureSize-3*deepness)
+    return sum
 def standardDevation(z,z_hat,featureSize,depth):
     sum = 0
-    for i in range(depth,featureSize):
+    for i in range(depth,featureSizem,l):
         sum+=(z[i]-z_hat[i])*(z[i]-z_hat[i])
-    return sum/(featureSize-3*depth)
+    return np.sqrt(sum/(featureSize-3*depth))
 def sp(arr, n):
     s = 0
     for k in range(n):
@@ -64,7 +61,7 @@ def computeC(x,z,featureSize,depth):
         vectorOdd = np.zeros(shape=(depth))
         for l in range(0, depth):#j
             #print()
-            for k in range(depth - 1, featureSize):#i
+            for k in range(depth - 1, featureSize-1):#i
                 if o%2 == 0:
                     index = k - (int)(o / 2)
                     #print(index)
