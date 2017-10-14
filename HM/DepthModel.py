@@ -1,4 +1,4 @@
-# finite difference model
+#finite difference model
 #def computeDiffDepth():# computes optimal depth of model
 import numpy as np
 def computeZhat(ANSWER,x,z,featureSize,deepness):

@@ -1,5 +1,5 @@
 import numpy as np
-#arajadranq cragir ardyunqner
+
 def correlation(arr1,arr2, n):
     sum = 0
     for i in range(n):
