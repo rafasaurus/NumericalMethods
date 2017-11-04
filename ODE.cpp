@@ -1,4 +1,4 @@
-//ODE stands for Ordinary diferential equation
+P//ODE stands for Ordinary diferential equation
 
 #include "stdafx.h"
 #include  <iostream>
