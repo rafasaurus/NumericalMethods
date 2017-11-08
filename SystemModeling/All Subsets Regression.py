@@ -63,16 +63,7 @@ def COMPUTE_REGRESSION_X(muffin, featureRows, featurSize, n): # featureRows =2 f
                 x[i][j] = sumXY(muffin[i-1], muffin[j-1], featureSize)
     return x
 
-def COMPUTE_REGRESSION_Y_EX(yp, x1, x2, x3, n):  # stands for experimental
-    y = np.zeros(4, dtype=float)
-    for i in range(n):
-        y[0] += yp[i]
-        y[1] += yp[i] * x1[i]
-        y[2] += yp[i] * x2[i]
-        y[3] += yp[i] * x3[i]
-    return y
-
-def COMPUTE_REGRESSION_Y(yp,muffin, n, featureSize):
+def COMPUTE_Y(yp,muffin, n, featureSize):
     y = np.zeros(n, dtype=float)
     for i in range(n):
         if i==0:
@@ -81,6 +72,33 @@ def COMPUTE_REGRESSION_Y(yp,muffin, n, featureSize):
             y[i] = sumXY(yp,muffin[i-1],featureSize)
     return y
 
+def mean(arr,n):
+    s=0
+    for i in range(n):
+        s+=arr[i]
+    return s/n
+
+#ռեգրեսիայով պայմանավորված միջին քառակուսային շեղումներ
+def SSR(arr,featureSize):
+    arr_mean = mean(arr, featureSize)
+    SSR_ = 0
+    for i in range(n):
+        SSR_ += (arr[i] - arr_mean) * (arr[i] - arr_mean)
+    return SSR_
+
+#միջին քառակուսային շեղումներ
+def SS0(arr,featureSize):
+    SS0_ = 0
+    arr_mean = mean(arr, featureSize)
+    for i in range(featureSize):
+        SS0_ += (arr[i] - arr_mean) * (arr[i] - arr_mean)
+    return SS0_
+
+#դետերմինացման գործակից
+def RSquared(arr,featureSize):
+    return SSR(arr,featureSize)/SS0(arr,featureSize)
+
+#----------------program----------------
 df=pd.read_csv("Water Salinity and River Discharge.csv")
 #plt.scatter(df)
 #plt.show()
@@ -106,11 +124,9 @@ muffin[2]=X3
 
 n=featureRows+1 #number of feature rows +1 for b0,b1,b2...
 X=COMPUTE_REGRESSION_X(muffin,featureRows,featureSize,n)
-vector1 = COMPUTE_REGRESSION_Y_EX(Y, muffin[0], muffin[1],muffin[2], featureSize)
-vector = COMPUTE_REGRESSION_Y(Y, muffin,featureRows+1, featureSize)
+vector = COMPUTE_Y(Y, muffin,featureRows+1, featureSize)
 
 print(X)
-print(vector1)
 print(vector)
 
 inverse_arr = INVERSE_MATRIX(X, n)
@@ -118,5 +134,9 @@ print(inverse_arr)
 
 B = np.matmul(inverse_arr, vector)
 print()
-print(B)
+print(B
+
+
+
+
 
