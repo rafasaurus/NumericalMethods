@@ -112,10 +112,17 @@ def SSE(yp,y_final,featureSize):
         SSE_+=(y_final[i] - yp[i])*(y_final[i] - yp[i])
     return SSE_
 
+#մնացորդային դիսպերսիայի վիճակագրական գնահատական, ազատության աստիճանը n-k-1
 def sigmaSquared(yp,y_final,feautreSize,dof):
     sigmaSquared_ = SSE(yp,y_final,featureSize)/(featureSize-dof-1)
     return sigmaSquared_
-#----------------program----------------
+
+#ֆիշերի չափանիշ
+def FISHER(yp,y_final,featureSize,dof):
+    F = MSR(y_final,featureSize,dof)/(sigmaSquared(yp,y_final,featureSize,dof))
+    return F
+
+#---------------------------------------program--------------------------------------------------------
 df=pd.read_csv("Water Salinity and River Discharge.csv")
 #plt.scatter(df)
 #plt.show()
@@ -126,8 +133,6 @@ X1=df['X1']
 X2=df['X2']
 X3=df['X3']
 Y=df['Y']
-
-
 
 featureSize = df.__len__()
 featureRows = 3
