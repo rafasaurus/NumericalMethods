@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #All Subsets Regression - Generalized Linear Models
 import numpy as np
 import pandas as pd
@@ -98,6 +100,21 @@ def SS0(arr,featureSize):
 def RSquared(arr,featureSize):
     return SSR(arr,featureSize)/SS0(arr,featureSize)
 
+#ռեգռեսիայով պայմանավորված դիսպերսիան
+def MSR(arr,featureSize,dof):
+    MSR_ = SSR(arr,featureSize)/(dof)# featureRows+1 is "degrees of freedom"
+    return MSR_
+
+#անհամաձայնեցումներով պայմանավորված միջին քառակուսային շեղումներ
+def SSE(yp,y_final,featureSize):
+    SSE_ = 0
+    for i in range(featureSize):
+        SSE_+=(y_final[i] - yp[i])*(y_final[i] - yp[i])
+    return SSE_
+
+def sigmaSquared(yp,y_final,feautreSize,dof):
+    sigmaSquared_ = SSE(yp,y_final,featureSize)/(featureSize-dof-1)
+    return sigmaSquared_
 #----------------program----------------
 df=pd.read_csv("Water Salinity and River Discharge.csv")
 #plt.scatter(df)
@@ -114,6 +131,8 @@ Y=df['Y']
 
 featureSize = df.__len__()
 featureRows = 3
+
+dof = featureRows # var that has been used for comuting SSR,SSE... for degrees of freedom
 
 print("featureSize = ",featureSize)
 
@@ -134,9 +153,15 @@ print(inverse_arr)
 
 B = np.matmul(inverse_arr, vector)
 print()
-print(B
+print(B)
 
+y_final = np.zeros(shape=(featureSize))
+print(y_final)
 
+for i in range(featureSize):
+    y_final[i]=B[0]+B[1]*muffin[0][i]+B[2]*muffin[1][i]+B[3]*muffin[2][i]
 
+print(y_final)
+print("rsquared=",RSquared(y_final,featureSize))
 
 
