@@ -151,15 +151,17 @@ def computeN(N,df):#computes regression for N variables
     X2 = df['X2']
     X3 = df['X3']
     Y = df['Y']
+    X_ = np.zeros(shape=(3, featureSize))
+    X_[0] = X1
+    X_[1] = X2
+    X_[2] = X3
+
     global_iter = featureRows
     dof = featureRows  # var that has been used for comuting SSR,SSE... for degrees of freedom
 
     # print("featureSize = ",featureSize)
 
-    muffin = np.zeros(shape=(3, featureSize))
-    muffin[0] = X1
-    muffin[1] = X2
-    muffin[2] = X3
+
 
     while global_iter != 0:
         c=combinatorial(featureRows,global_iter)
@@ -174,15 +176,53 @@ def computeN(N,df):#computes regression for N variables
         for index in B_indexes:
             for index_of_index in index:
 
-                    print(index_of_index)
+                    #print(index_of_index)
                     list_.append(index_of_index)
 
             print("  ")
-        print(list_)
+        #print(list_)
         print("--------end----------")
 
-        matrix=np.zeros(shape=(c))
+
+
+        '''
+        matrix=np.zeros(shape=(global_iter,c))
+        print("matrixLen=",matrix.__len__())
+
+        if c==1:
+            for i in range(global_iter):
+                print(i)
+                #matrix[i]=1#list_[i]
+
         print("matrix=",matrix)
+        '''
+        middle_muffin = np.zeros(shape=(global_iter, featureSize))
+        #print("middle_muff",middle_muffin)
+        for c_i in range(c):
+            print("c_i=",c_i)
+            for regression_i in range(global_iter):
+                print("regresi_i",regression_i)
+        #n = featureRows + 1  # number of feature rows +1 for b0,b1,b2...
+        #X = COMPUTE_REGRESSION_X(middle_muffin, global_iter, featureSize, n)
+        #vector = COMPUTE_Y(Y, middle_muffin, global_iter + 1, featureSize)
+
+        # print(X)
+        # print(vector)
+
+        #inverse_arr = INVERSE_MATRIX(X, n)
+        # print(inverse_arr)
+
+        #B = np.matmul(inverse_arr, vector)
+        # print()
+        # print(B)
+
+        y_final = np.zeros(shape=(featureSize))
+
+
+
+
+
+
         global_iter = global_iter - 1
 
 
@@ -212,23 +252,23 @@ muffin[2]=X3
 
 n=featureRows+1 #number of feature rows +1 for b0,b1,b2...
 X=COMPUTE_REGRESSION_X(muffin,featureRows,featureSize,n)
-vector = COMPUTE_Y(Y, muffin,featureRows+1, featureSize)
+#vector = COMPUTE_Y(Y, muffin,featureRows+1, featureSize)
 
 #print(X)
 #print(vector)
 
-inverse_arr = INVERSE_MATRIX(X, n)
+#inverse_arr = INVERSE_MATRIX(X, n)
 #print(inverse_arr)
 
-B = np.matmul(inverse_arr, vector)
+#B = np.matmul(inverse_arr, vector)
 #print()
 #print(B)
 
-y_final = np.zeros(shape=(featureSize))
+#y_final = np.zeros(shape=(featureSize))
 
 
-for i in range(featureSize):
-    y_final[i]=B[0]+B[1]*muffin[0][i]+B[2]*muffin[1][i]+B[3]*muffin[2][i]
+#for i in range(featureSize):
+#    y_final[i]=B[0]+B[1]*muffin[0][i]+B[2]*muffin[1][i]+B[3]*muffin[2][i]
 
 #print("y_final=",y_final)
 #print("rsquared=",RSquared(y_final,featureSize))
