@@ -197,11 +197,19 @@ def computeN(N,df):#computes regression for N variables
         print("matrix=",matrix)
         '''
         middle_muffin = np.zeros(shape=(global_iter, featureSize))
-        #print("middle_muff",middle_muffin)
-        for c_i in range(c):
-            print("c_i=",c_i)
+        print("middle_muff",middle_muffin)
+        for c_i in range(c):#0
+            #print("c_i=",c_i)
+
+
             for regression_i in range(global_iter):
                 print("regresi_i",regression_i)
+                #if global_iter==featureRows:
+                middle_muffin[regression_i] = X_[list_[regression_i]-1]
+
+            print("middle_muffin = ",middle_muffin)
+
+
         #n = featureRows + 1  # number of feature rows +1 for b0,b1,b2...
         #X = COMPUTE_REGRESSION_X(middle_muffin, global_iter, featureSize, n)
         #vector = COMPUTE_Y(Y, middle_muffin, global_iter + 1, featureSize)
