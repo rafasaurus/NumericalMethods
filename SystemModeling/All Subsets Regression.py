@@ -160,16 +160,34 @@ def computeN(N,df):#computes regression for N variables
     muffin[0] = X1
     muffin[1] = X2
     muffin[2] = X3
+
     while global_iter != 0:
 
         B_indexes=getB_index(featureRows, df, global_iter)
         print(B_indexes)
         l=0
-
+        B_matrix = np.zeros(shape=(global_iter,combinatorial(featureRows,global_iter+1)))
+        print(B_matrix)
+        B_i=0# i for interate b matrix
+        B_j=0# j for interate b matrix
         for index in B_indexes:
             for index_of_index in index:
-                print(index_of_index)
+                if global_iter==featureRows:
+                    print(index_of_index)
+                    B_matrix[B_j]=index_of_index
+                    #print("B_j=", B_j)
+                    #print("B_i=", B_i)
+                    B_j=B_j+1
+                else:
+                    print(index_of_index)
+                    B_matrix[B_i][B_j] = index_of_index
+                    # print("B_j=", B_j)
+                    # print("B_i=", B_i)
+                    B_j = B_j + 1
+
+            B_i=B_i+1
             print("  ")
+        print(B_matrix)
         #print(index)
         global_iter = global_iter - 1
 
@@ -222,7 +240,7 @@ for i in range(featureSize):
 #print("rsquared=",RSquared(y_final,featureSize))
 N=4#regression for N variables
 computeN(N,df)
-print(fact(3))
+
 
 print("-----------------------")
 global_iter=featureRows
