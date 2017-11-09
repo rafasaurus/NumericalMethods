@@ -9,17 +9,21 @@ y_temp=0
 for i in range(19):
     for j in range(19):
         for k in range(19):
-            arr[int(x[k])-1][int(y[k]-1)]=1
+            if y[k]-1 !=0:
+                arr[int(x[k])-1][int(y[k]-1)]=1
 
 
-print()
+
 print(arr)
-
 print()
+print()
+arr_2=np.matmul(arr,arr)
+print(arr_2)
+#global_arr=arr
+#while global_arr.any() != zeros.any():
+#    global_arr =np.matmul(global_arr,global_arr)
+#    print(global_arr)
 
-#arr_2=np.matmul(arr,arr)
-#print(arr_2)
-global_arr=arr
-while global_arr.any() != zeros.any():
-    global_arr =np.matmul(global_arr,global_arr)
-    print(global_arr)
+#if all([v==0 for v in arr]):
+#    global_arr =np.matmul(global_arr,global_arr)
+#    print(global_arr)

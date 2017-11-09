@@ -121,14 +121,70 @@ def sigmaSquared(yp,y_final,feautreSize,dof):
 def FISHER(yp,y_final,featureSize,dof):
     F = MSR(y_final,featureSize,dof)/(sigmaSquared(yp,y_final,featureSize,dof))
     return F
+def fact(n):
+    fact_=1
+    for i in range(1,n+1):
+        fact_=fact_*i
+    return fact_
 
+def c(n,k):
+    return fact(n) / (fact(n - k) * fact(k))
+def getBindex(r,N):
+    q=0
+    if index == r:
+        for j in range(r):
+        #Console.Write(data[j] + " ")
+            bb[end - r][q][j] = data[j]
+        if (q < c(N, r))
+            q++#qn mejtexinna
+        else:
+            q = 0
+        return
+
+def computeN(N,df):#computes regression for N variables
+    featureSize = df.__len__()
+    featureRows = 3
+    X1 = df['X1']
+    X2 = df['X2']
+    X3 = df['X3']
+    Y = df['Y']
+
+    dof = featureRows  # var that has been used for comuting SSR,SSE... for degrees of freedom
+
+    # print("featureSize = ",featureSize)
+
+    muffin = np.zeros(shape=(3, featureSize))
+    muffin[0] = X1
+    muffin[1] = X2
+    muffin[2] = X3
+
+    n = featureRows + 1  # number of feature rows +1 for b0,b1,b2...
+    X = COMPUTE_REGRESSION_X(muffin, featureRows, featureSize, n)
+    vector = COMPUTE_Y(Y, muffin, featureRows + 1, featureSize)
+
+    # print(X)
+    # print(vector)
+
+    inverse_arr = INVERSE_MATRIX(X, n)
+    # print(inverse_arr)
+
+    B = np.matmul(inverse_arr, vector)
+    # print()
+    # print(B)
+
+    y_final = np.zeros(shape=(featureSize))
+
+    for i in range(featureSize):
+        y_final[i] = B[0] + B[1] * muffin[0][i] + B[2] * muffin[1][i] + B[3] * muffin[2][i]
+    print(y_final)
+    print(Y)
 #---------------------------------------program--------------------------------------------------------
 df=pd.read_csv("Water Salinity and River Discharge.csv")
 #plt.scatter(df)
 #plt.show()
-print(df.head())
+#print(df.head())
 #arr = np.zeros(shape=df['X1'].)
-print(df["X1"].head())
+#print(df["X1"].head())
 X1=df['X1']
 X2=df['X2']
 X3=df['X3']
@@ -139,7 +195,7 @@ featureRows = 3
 
 dof = featureRows # var that has been used for comuting SSR,SSE... for degrees of freedom
 
-print("featureSize = ",featureSize)
+#print("featureSize = ",featureSize)
 
 muffin = np.zeros(shape=(3, featureSize))
 muffin[0]=X1
@@ -150,23 +206,24 @@ n=featureRows+1 #number of feature rows +1 for b0,b1,b2...
 X=COMPUTE_REGRESSION_X(muffin,featureRows,featureSize,n)
 vector = COMPUTE_Y(Y, muffin,featureRows+1, featureSize)
 
-print(X)
-print(vector)
+#print(X)
+#print(vector)
 
 inverse_arr = INVERSE_MATRIX(X, n)
-print(inverse_arr)
+#print(inverse_arr)
 
 B = np.matmul(inverse_arr, vector)
-print()
-print(B)
+#print()
+#print(B)
 
 y_final = np.zeros(shape=(featureSize))
-print(y_final)
+
 
 for i in range(featureSize):
     y_final[i]=B[0]+B[1]*muffin[0][i]+B[2]*muffin[1][i]+B[3]*muffin[2][i]
 
-print(y_final)
-print("rsquared=",RSquared(y_final,featureSize))
-
-
+#print("y_final=",y_final)
+#print("rsquared=",RSquared(y_final,featureSize))
+N=4#regression for N variables
+computeN(N,df)
+print(fact(3))

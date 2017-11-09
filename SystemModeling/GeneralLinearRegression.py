@@ -99,7 +99,6 @@ vector = COMPUTE_REGRESSION_Y_EX(yp, muffin[0], muffin[1], featureSize)
 print("arr=", arr)
 inverse_arr = INVERSE_MATRIX(arr, 3)
 print("vector=\n", vector)
-B = np.matmul(inverse_arr, vector)
 print(B)
 # հաշվարկային y_final
 y_final = np.zeros(shape=(5,1))
