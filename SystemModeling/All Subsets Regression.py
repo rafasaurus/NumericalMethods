@@ -162,33 +162,27 @@ def computeN(N,df):#computes regression for N variables
     muffin[2] = X3
 
     while global_iter != 0:
+        c=combinatorial(featureRows,global_iter)
+        #print("c=",c)
 
         B_indexes=getB_index(featureRows, df, global_iter)
         print(B_indexes)
-        l=0
-        B_matrix = np.zeros(shape=(global_iter,combinatorial(featureRows,global_iter+1)))
-        print(B_matrix)
-        B_i=0# i for interate b matrix
-        B_j=0# j for interate b matrix
+
+
+        list_=[]
+
         for index in B_indexes:
             for index_of_index in index:
-                if global_iter==featureRows:
-                    print(index_of_index)
-                    B_matrix[B_j]=index_of_index
-                    #print("B_j=", B_j)
-                    #print("B_i=", B_i)
-                    B_j=B_j+1
-                else:
-                    print(index_of_index)
-                    B_matrix[B_i][B_j] = index_of_index
-                    # print("B_j=", B_j)
-                    # print("B_i=", B_i)
-                    B_j = B_j + 1
 
-            B_i=B_i+1
+                    print(index_of_index)
+                    list_.append(index_of_index)
+
             print("  ")
-        print(B_matrix)
-        #print(index)
+        print(list_)
+        print("--------end----------")
+
+        matrix=np.zeros(shape=(c))
+        print("matrix=",matrix)
         global_iter = global_iter - 1
 
 
