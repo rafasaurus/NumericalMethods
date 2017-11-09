@@ -134,23 +134,14 @@ def fact(n):
 def combinatorial(n,k):
     return fact(n) / (fact(n - k) * fact(k))
 
-def get_B_order(c,i_regression_loop):
-
-    print()
 
 
-def getB_index(featureRows,df):
-    for i in range(featureRows,0,-1):
-        c=combinatorial(featureRows, i)
-        featureSize = df.__len__()
-        X1 = df['X1']
-        X2 = df['X2']
-        X3 = df['X3']
-        Y = df['Y']
-        #print(" ")
-        for i_regression_loop in range(c):
-            #print("kak")
-            print()
+
+def getB_index(featureRows,df,global_iter):
+
+    S = [1, 2, 3]
+    S=findsubsets(S, global_iter)
+    return S
 
 
 def computeN(N,df):#computes regression for N variables
@@ -160,7 +151,7 @@ def computeN(N,df):#computes regression for N variables
     X2 = df['X2']
     X3 = df['X3']
     Y = df['Y']
-
+    global_iter = featureRows
     dof = featureRows  # var that has been used for comuting SSR,SSE... for degrees of freedom
 
     # print("featureSize = ",featureSize)
@@ -169,27 +160,12 @@ def computeN(N,df):#computes regression for N variables
     muffin[0] = X1
     muffin[1] = X2
     muffin[2] = X3
+    while global_iter != 0:
+        B_indexes=getB_index(featureRows, df, global_iter)
+        print(B_indexes)
+        global_iter = global_iter - 1
 
-    n = featureRows + 1  # number of feature rows +1 for b0,b1,b2...
-    X = COMPUTE_REGRESSION_X(muffin, featureRows, featureSize, n)
-    vector = COMPUTE_Y(Y, muffin, featureRows + 1, featureSize)
 
-    # print(X)
-    # print(vector)
-
-    inverse_arr = INVERSE_MATRIX(X, n)
-    # print(inverse_arr)
-
-    B = np.matmul(inverse_arr, vector)
-    # print()
-    # print(B)
-
-    y_final = np.zeros(shape=(featureSize))
-
-    for i in range(featureSize):
-        y_final[i] = B[0] + B[1] * muffin[0][i] + B[2] * muffin[1][i] + B[3] * muffin[2][i]
-    print(y_final)
-    print(Y)
 #---------------------------------------program--------------------------------------------------------
 df=pd.read_csv("Water Salinity and River Discharge.csv")
 #plt.scatter(df)
@@ -241,6 +217,5 @@ computeN(N,df)
 print(fact(3))
 
 print("-----------------------")
-getB_index(featureRows,df)
-
-print(findsubsets(3,2))
+global_iter=featureRows
+getB_index(featureRows,df,global_iter)
