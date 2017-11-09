@@ -3,6 +3,10 @@
 #All Subsets Regression - Generalized Linear Models
 import numpy as np
 import pandas as pd
+import itertools
+
+def findsubsets(S,m):
+    return set(itertools.combinations(S, m))
 #import matplotlib.pyplot as plt
 
 def sp(arr, n):
@@ -127,19 +131,27 @@ def fact(n):
         fact_=fact_*i
     return fact_
 
-def c(n,k):
+def combinatorial(n,k):
     return fact(n) / (fact(n - k) * fact(k))
-def getBindex(r,N):
-    q=0
-    if index == r:
-        for j in range(r):
-        #Console.Write(data[j] + " ")
-            bb[end - r][q][j] = data[j]
-        if (q < c(N, r))
-            q++#qn mejtexinna
-        else:
-            q = 0
-        return
+
+def get_B_order(c,i_regression_loop):
+
+    print()
+
+
+def getB_index(featureRows,df):
+    for i in range(featureRows,0,-1):
+        c=combinatorial(featureRows, i)
+        featureSize = df.__len__()
+        X1 = df['X1']
+        X2 = df['X2']
+        X3 = df['X3']
+        Y = df['Y']
+        #print(" ")
+        for i_regression_loop in range(c):
+            #print("kak")
+            print()
+
 
 def computeN(N,df):#computes regression for N variables
     featureSize = df.__len__()
@@ -227,3 +239,8 @@ for i in range(featureSize):
 N=4#regression for N variables
 computeN(N,df)
 print(fact(3))
+
+print("-----------------------")
+getB_index(featureRows,df)
+
+print(findsubsets(3,2))
