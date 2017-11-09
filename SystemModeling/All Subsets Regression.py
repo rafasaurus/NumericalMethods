@@ -201,16 +201,18 @@ def computeN(N,df):#computes regression for N variables
         reg_i_step = 0
         for c_i in range(c):#0
             #print("c_i=",c_i)
-
+            #BB = np.zeros(shape=(featureRows))
 
             for regression_i in range(global_iter):
                 print("regresi_i",regression_i)
                 if global_iter==featureRows:
                     print("list_ for current middle muff",list_)
                     middle_muffin[regression_i] = X_[list_[regression_i]-1]
+                    #BB[list_[regression_i]-1] = 1
                 else:
                     print("list_ for current middle muff",list_)
                     middle_muffin[regression_i] = X_[list_[reg_i_step] - 1]
+                    #BB[list_[reg_i_step] - 1] = 1
                     reg_i_step+=1
             print("middle_muffin = ",middle_muffin)
 
@@ -226,13 +228,35 @@ def computeN(N,df):#computes regression for N variables
             print(inverse_arr)
 
             B = np.matmul(inverse_arr, vector)
+            append_ = np.zeros(shape=(featureRows+1-B.__len__()))
+            B = np.append(B,append_)
             # print()
             print("B===========================================",B)
-
+            #print(featureRows+1-B.__len__())
             y_final = np.zeros(shape=(featureSize))
+            #print("BB=",BB)
+            for i in range(featureSize):
+                y_final[i]=B[0]+B[1]*X_[0][i]+B[2]*X_[1][i]+B[3]*X_[2][i]
+            print(y_final)
+            '''
+            for regression_i in range(global_iter):
+                print("regresi_i",regression_i)
+                if global_iter==featureRows:
+                    #print("list_ for current middle muff",list_)
+                    #middle_muffin[regression_i] = X_[list_[regression_i]-1]
+                    BB[list_[regression_i]-1] = 1
+                    for i in range(featureSize):
+                       y_final[i]=B[0]+B[1]*middle_muffin[i]+B[2]*middle_muffin[i]+B[3]*middle_muffin[i]
 
-            #for i in range(featureSize):
-            #   y_final[i]=B[0]+B[1]*middle_muffin[0][i]+B[2]*middle_muffin[1][i]+B[3]*middle_muffin[2][i]
+                else:
+                    #print("list_ for current middle muff",list_)
+                    #middle_muffin[regression_i] = X_[list_[reg_i_step] - 1]
+                    BB[list_[reg_i_step] - 1] = 1
+                    reg_i_step+=1
+            print("middle_muffin = ",middle_muffin)
+            '''
+
+
 
 
         global_iter = global_iter - 1
@@ -291,3 +315,7 @@ computeN(N,df)
 print("-----------------------")
 global_iter=featureRows
 getB_index(featureRows,df,global_iter)
+
+
+
+
