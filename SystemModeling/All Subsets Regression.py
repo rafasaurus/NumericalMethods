@@ -161,8 +161,16 @@ def computeN(N,df):#computes regression for N variables
     muffin[1] = X2
     muffin[2] = X3
     while global_iter != 0:
+
         B_indexes=getB_index(featureRows, df, global_iter)
         print(B_indexes)
+        l=0
+
+        for index in B_indexes:
+            for index_of_index in index:
+                print(index_of_index)
+            print("  ")
+        #print(index)
         global_iter = global_iter - 1
 
 
