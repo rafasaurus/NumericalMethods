@@ -206,32 +206,33 @@ def computeN(N,df):#computes regression for N variables
             for regression_i in range(global_iter):
                 print("regresi_i",regression_i)
                 if global_iter==featureRows:
+                    print("list_ for current middle muff",list_)
                     middle_muffin[regression_i] = X_[list_[regression_i]-1]
                 else:
+                    print("list_ for current middle muff",list_)
                     middle_muffin[regression_i] = X_[list_[reg_i_step] - 1]
                     reg_i_step+=1
             print("middle_muffin = ",middle_muffin)
 
+            n = global_iter + 1
+            #n = featureRows + 1  # number of feature rows +1 for b0,b1,b2...
+            X = COMPUTE_REGRESSION_X(middle_muffin, global_iter, featureSize, n)
+            vector = COMPUTE_Y(Y, middle_muffin, global_iter +1, featureSize)
 
-        #n = featureRows + 1  # number of feature rows +1 for b0,b1,b2...
-        #X = COMPUTE_REGRESSION_X(middle_muffin, global_iter, featureSize, n)
-        #vector = COMPUTE_Y(Y, middle_muffin, global_iter + 1, featureSize)
+            print(X)
+            print(vector)
 
-        # print(X)
-        # print(vector)
+            inverse_arr = INVERSE_MATRIX(X, n)
+            print(inverse_arr)
 
-        #inverse_arr = INVERSE_MATRIX(X, n)
-        # print(inverse_arr)
+            B = np.matmul(inverse_arr, vector)
+            # print()
+            print("B===========================================",B)
 
-        #B = np.matmul(inverse_arr, vector)
-        # print()
-        # print(B)
+            y_final = np.zeros(shape=(featureSize))
 
-        y_final = np.zeros(shape=(featureSize))
-
-
-
-
+            #for i in range(featureSize):
+            #   y_final[i]=B[0]+B[1]*middle_muffin[0][i]+B[2]*middle_muffin[1][i]+B[3]*middle_muffin[2][i]
 
 
         global_iter = global_iter - 1
