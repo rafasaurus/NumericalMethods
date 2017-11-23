@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f566241-92fd-4244-9fc7-aa39f84f2b02" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/NumericalMethods.iml" afterPath="$PROJECT_DIR$/.idea/NumericalMethods.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SystemModeling/All Subsets Regression.py" afterPath="$PROJECT_DIR$/SystemModeling/All Subsets Regression.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="All Subsets Regression.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SystemModeling/All Subsets Regression.py">
+      <file leaf-file-name="importing.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SystemModeling/importing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="243" column="23" lean-forward="false" selection-start-line="243" selection-start-column="23" selection-end-line="243" selection-end-column="23" />
+            <state relative-caret-position="307">
+              <caret line="321" column="23" lean-forward="false" selection-start-line="321" selection-start-column="23" selection-end-line="321" selection-end-column="23" />
               <folding>
                 <element signature="e#98#116#0" expanded="true" />
               </folding>
@@ -36,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GeneralLinearRegression.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SystemModeling/GeneralLinearRegression.py">
+      <file leaf-file-name="CorrelatedVarsRegression.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SystemModeling/CorrelatedVarsRegression.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="44" column="17" lean-forward="false" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
+            <state relative-caret-position="-1493">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -76,16 +78,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="IKT.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SystemModeling/IKT.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -114,6 +106,7 @@
       <find>reshape</find>
       <find>indexes</find>
       <find>Fisher_bool</find>
+      <find>INVERSE_MATRIX</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -126,14 +119,14 @@
         <option value="$PROJECT_DIR$/SystemModeling/IKT.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/SystemModeling/All Subsets Regression.py" />
+        <option value="$PROJECT_DIR$/SystemModeling/importing.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="11" />
-    <option name="y" value="149" />
-    <option name="width" value="1908" />
-    <option name="height" value="990" />
+    <option name="y" value="24" />
+    <option name="width" value="1920" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -150,6 +143,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -178,14 +172,14 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Python.All Subsets Regression">
+  <component name="RunManager" selected="Python.importing">
     <configuration default="false" name="GeneralLinearRegression" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -250,6 +244,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="NumericalMethods" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="importing" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SystemModeling" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="NumericalMethods" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SystemModeling/importing.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -388,18 +399,20 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.GeneralLinearRegression" />
       <item index="1" class="java.lang.String" itemvalue="Python.All Subsets Regression" />
       <item index="2" class="java.lang.String" itemvalue="Python.IKT" />
       <item index="3" class="java.lang.String" itemvalue="Python.test" />
+      <item index="4" class="java.lang.String" itemvalue="Python.importing" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.All Subsets Regression" />
-        <item index="1" class="java.lang.String" itemvalue="Python.test" />
-        <item index="2" class="java.lang.String" itemvalue="Python.IKT" />
-        <item index="3" class="java.lang.String" itemvalue="Python.GeneralLinearRegression" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.importing" />
+        <item index="1" class="java.lang.String" itemvalue="Python.All Subsets Regression" />
+        <item index="2" class="java.lang.String" itemvalue="Python.test" />
+        <item index="3" class="java.lang.String" itemvalue="Python.IKT" />
+        <item index="4" class="java.lang.String" itemvalue="Python.GeneralLinearRegression" />
       </list>
     </recent_temporary>
   </component>
@@ -426,25 +439,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="11" y="149" width="1908" height="990" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14779875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.146875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921812" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921812" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4180418" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27319062" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39959225" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -453,27 +466,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gauss-jordan.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="7" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SystemModeling/IKT.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -487,7 +484,7 @@
         <state relative-caret-position="2460">
           <caret line="166" column="10" lean-forward="false" selection-start-line="166" selection-start-column="10" selection-end-line="166" selection-end-column="10" />
           <folding>
-            <element signature="e#98#116#0" expanded="true" />
+            <element signature="e#98#116#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -524,14 +521,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py" />
     <entry file="file://$PROJECT_DIR$/SystemModeling/IKT.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -545,19 +535,12 @@
         <state relative-caret-position="2460">
           <caret line="166" column="10" lean-forward="false" selection-start-line="166" selection-start-column="10" selection-end-line="166" selection-end-column="10" />
           <folding>
-            <element signature="e#98#116#0" expanded="true" />
+            <element signature="e#98#116#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py" />
     <entry file="file://$PROJECT_DIR$/SystemModeling/IKT.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -571,7 +554,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#98#116#0" expanded="true" />
+            <element signature="e#98#116#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -589,7 +572,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#98#116#0" expanded="true" />
+            <element signature="e#98#116#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -607,7 +590,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#98#116#0" expanded="true" />
+            <element signature="e#98#116#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -625,7 +608,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#98#116#0" expanded="true" />
+            <element signature="e#98#116#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -643,7 +626,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#98#116#0" expanded="true" />
+            <element signature="e#98#116#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -661,7 +644,7 @@
         <state relative-caret-position="2115">
           <caret line="141" column="0" lean-forward="false" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
           <folding>
-            <element signature="e#98#116#0" expanded="true" />
+            <element signature="e#98#116#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -693,7 +676,7 @@
         <state relative-caret-position="2565">
           <caret line="171" column="0" lean-forward="true" selection-start-line="171" selection-start-column="0" selection-end-line="171" selection-end-column="0" />
           <folding>
-            <element signature="e#98#116#0" expanded="true" />
+            <element signature="e#98#116#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -725,7 +708,7 @@
         <state relative-caret-position="1560">
           <caret line="104" column="7" lean-forward="false" selection-start-line="104" selection-start-column="7" selection-end-line="104" selection-end-column="7" />
           <folding>
-            <element signature="e#98#116#0" expanded="true" />
+            <element signature="e#98#116#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -771,7 +754,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#98#116#0" expanded="true" />
+            <element signature="e#98#116#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -788,7 +771,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#98#116#0" expanded="true" />
+            <element signature="e#98#116#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -805,7 +788,7 @@
         <state relative-caret-position="15">
           <caret line="1" column="18" lean-forward="false" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
           <folding>
-            <element signature="e#98#116#0" expanded="true" />
+            <element signature="e#98#116#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -840,6 +823,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test.py" />
+    <entry file="file://$PROJECT_DIR$/SystemModeling/All Subsets Regression.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="243" column="23" lean-forward="false" selection-start-line="243" selection-start-column="23" selection-end-line="243" selection-end-column="23" />
+          <folding>
+            <element signature="e#98#116#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SystemModeling/GeneralLinearRegression.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SystemModeling/CorrelatedVarsRegression.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1493">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SystemModeling/IKT.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -856,26 +866,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
+    <entry file="file://$PROJECT_DIR$/SystemModeling/importing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SystemModeling/GeneralLinearRegression.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="44" column="17" lean-forward="false" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SystemModeling/All Subsets Regression.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="243" column="23" lean-forward="false" selection-start-line="243" selection-start-column="23" selection-end-line="243" selection-end-column="23" />
+        <state relative-caret-position="307">
+          <caret line="321" column="23" lean-forward="false" selection-start-line="321" selection-start-column="23" selection-end-line="321" selection-end-column="23" />
           <folding>
             <element signature="e#98#116#0" expanded="true" />
           </folding>
