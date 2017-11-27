@@ -1,7 +1,7 @@
 import math
-h=0.0001 # step for derivative
-iterations = 10
-x=float(-0.4) # first iteration X0 value 
+h=0.001 # step for derivative
+iterations = 100
+
 
 def f(x): # function to iterate
     return (pow(x,3)-2*pow(x,2)+1)
@@ -35,13 +35,72 @@ def fourth(x):
 def double(x):
     for i in range(iterations):
         print(x)
-        x=x-f_1(x)/f_2(x)
+        x = x - f_1(x)/f_2(x)
+        #print("f_1 = " ,i,"  ", f_1(x))
+        #print("f_2 =  ",i,"  ", f_2(x))
+        #break
+def fixed_right_edge_chord(b,x): #fixed with right edge chord method "quasi-Newton method" 167 Simonyan
+    if (f(b)*f_2(b) > 0):
+        print("yes")
+    else:
+        return 0
+    for i in range(iterations):
+        x = x - ((b-x)*f(x))/(f(b)-f(x))
+        print(x)
 
-first(x)
-print(" ")
-seccond(x)
-print(" ")
-third(x)
-print(" ")
-fourth(x)
-print(" ")
+def fixed_left_edge_chord(a, x):  #fixed with left edge chord method "quasi-Newton method" 167 Simonyan
+    if (f(a) * f_2(a) > 0):
+        print("yes")
+    else:
+        return 0
+    for i in range(iterations):
+        x = x - ((a - x) * f(x)) / (f(a) - f(x))
+        print(x)
+def combination(a,b):# page 167
+    x = a
+    __x__= b
+    if (f(a) * f_2(a) > 0):
+        print("yes")
+    else:
+        return 0
+    print("x")
+    for i in range(iterations):
+        #x = x - f(x)/f_1(x)
+        __x__ = x - ((__x__-x)*f(x))/(f(__x__)-f(x))
+        print(__x__)
+    print("__x__")
+    for i in range(iterations):
+        x = x - f(x)/f_1(x)
+        print(x)
+
+def basic_iteration_system_solver(x,y):
+    for i in range(iterations):
+        print(x, '\t', y)
+        y_=y
+        y = pow(x, 2) + 5
+        x = (y_/2)-2
+
+
+
+#first(x)
+#print(" ")
+#seccond(x)
+#print(" ")
+#third(x)
+#print(" ")
+#fourth(x)
+#print(" ")
+#x=float(-1.0) # first iteration X0 value
+#a = -1
+#b = 2
+#x = -0.5
+
+#if fixed_right_edge(b,x) == 0:
+#    print("error right_edge")
+
+#if combination(a,b) == 0:
+#    print("error left edge")
+
+x = 0
+y = 5.5
+basic_iteration_system_solver(x,y)

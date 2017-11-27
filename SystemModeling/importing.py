@@ -281,6 +281,12 @@ def include(N,df):
     R_df = pd.concat([R_df, df[[max_corr_string]]], axis=1)
     R_df_copy=R_df
     iter_q_iter=0
+
+    print("_______")
+    print(np.corrcoef(df['X1'],df['X2']))
+    print("pierce-----")
+    print(pearsonr(df['X1'],df['Y']))
+    print("endo")
     for column in df:
 
         if column != max_corr_string and column!='Y' and iter_q_iter!=0:
@@ -319,12 +325,12 @@ def include(N,df):
 
 
 
-            __fisher__=
+            #__fisher__=
 
             del R_df_copy[column]
         iter_q_iter+=1
 
-    #del R_df_copy['Unnamed']
+    #del R_df_copy['Unnamed']r
     #print(R_df_copy)
 
 
