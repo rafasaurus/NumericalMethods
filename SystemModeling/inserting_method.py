@@ -105,7 +105,8 @@ def SS0(arr,featureSize):
     return SS0_
 
 #դետերմինացման գործակից
-def RSquared(arr,featureSize):
+def RSquared(arr):
+    featureSize=arr.__len__()
     return SSR(arr,featureSize)/SS0(arr,featureSize)
 
 #ռեգռեսիայով պայմանավորված դիսպերսիան
@@ -328,16 +329,43 @@ def include(N,df):
                             max = ((Q_[0][j])**2) / (Q_[0][0]*Q_[j][j])
                             max_j = j
 
-            #print("max_j=",max_j)
-            #print("max=",max)
-            ##new_df = df[['Y']].copy()
-            new_df = pd.concat([new_df, df[['X1']]], axis=1)
-            #print("new_df=",new_df)
-            #new_df_numpy=new_df.as_matrix()
-            #print(new_df_numpy)
-            #COMPUTE_Y()
+            to_line_reg_df = df[max_corr_string].values[:, np.newaxis]
+            featureSize = len(to_line_reg_df)
+            featureCols = 1
+            x_ = np.zeros(shape=(0, featureSize))
+            x_ = np.append(x_, to_line_reg_df)
+            #x_ = np.append(x_, x2)
+            # np.concatenate((x_, x1))
 
-            #__fisher__=
+            # target data is array of shape (n,)
+            y = df['Y'].values
+            x_ = x_.reshape(featureSize, -featureCols)  # reshaping for .fit method
+            #print(x_)
+            ## your code for regression
+            regr = LinearRegression()
+            regr.fit(x_, y)
+
+
+            # the correct coef is different from your findings
+            print(regr.coef_)
+            print(regr.intercept_)
+            #computes y_hat
+            y_hat = y
+            for i in range(featureSize):
+                y_hat[i] = regr.intercept_
+                for j in range(featureCols):
+                    y_hat[i] += regr.coef_[j] * x_[i][j]
+            print("y_hat=",y_hat)
+            #y_hat_ = y# y hat with only b0+b1
+            #for i in range(featureSize):
+            #    y_hat[i] = regr.intercept_
+            #    for j in range(featureCols):
+            #        y_hat_[i] += regr.coef_[j] * x_[i][j]
+            #print("y_hat_=",y_hat)
+
+            fisher_hat_q_m = ((RSquared(y_hat)**2))
+            print("fisher== ",fisher_hat_q_m)
+
 
             del R_df_copy[column]
         iter_q_iter+=1

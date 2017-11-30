@@ -1,5 +1,5 @@
 import math
-h=0.001 # step for derivative
+h=0.00001 # step for derivative
 iterations = 100
 
 
@@ -101,6 +101,8 @@ def basic_iteration_system_solver(x,y):
 #if combination(a,b) == 0:
 #    print("error left edge")
 
-x = 0
-y = 5.5
-basic_iteration_system_solver(x,y)
+#x = 0
+#y = 5.5
+#basic_iteration_system_solver(x,y)
+
+print(f_2(0))
