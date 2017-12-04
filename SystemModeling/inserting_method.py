@@ -363,7 +363,7 @@ def include(N,df):
             #        y_hat_[i] += regr.coef_[j] * x_[i][j]
             #print("y_hat_=",y_hat)
 
-            fisher_hat_q_m = ((RSquared(y_hat)**2))
+            fisher_hat_q_m = ((RSquared(y_hat)**2) - RSquared(y)*(-3))/(1-RSquared(y_hat))
             print("fisher== ",fisher_hat_q_m)
 
 
