@@ -1,6 +1,6 @@
 import math
-h=0.00001 # step for derivative
-iterations = 100
+h=0.0001 # step for derivative
+iterations = 10
 
 
 def f(x): # function to iterate
@@ -63,11 +63,11 @@ def combination(a,b):# page 167
         print("yes")
     else:
         return 0
-    print("x")
+    #print("x")
     for i in range(iterations):
         #x = x - f(x)/f_1(x)
         __x__ = x - ((__x__-x)*f(x))/(f(__x__)-f(x))
-        print(__x__)
+        #print(__x__)
     print("__x__")
     for i in range(iterations):
         x = x - f(x)/f_1(x)
@@ -81,8 +81,52 @@ def basic_iteration_system_solver(x,y):
         x = (y_/2)-2
 
 
+x=0.2
+print("f(x)=pow(x,3)-2*pow(x,2)+1 , x=0.2")
 
-#first(x)
+print("առաջին")
+first(x)
+print(" ")
+print("երկրորդ")
+seccond(x)
+print(" ")
+print("երրորդ")
+third(x)
+print(" ")
+print("չորրորդ")
+fourth(x)
+print(" ")
+
+
+a = -1
+b = 2
+x = -0.5
+print("a = -1,b = 2,x = -0.5 ")
+print("անշարժ աջ եզրով լարերի մեթոդով")
+if fixed_right_edge_chord(b,x) == 0:
+    print("error right_edge")
+print(" ")
+print("անշարժ ձախ եզրով լարերի մեթոդով")
+if fixed_left_edge_chord(b,x) == 0:
+    print("error right_edge")
+
+print(" ")
+print("զուգակցման մեթոդ")
+combination(a,b)
+print(" ")
+
+x = 0
+y = 5.5
+print("հասարակ իտերացիաների եղանակը")
+print("համակարգը՝")
+print()
+print("լուծումը x=0 , y=5.5")
+print(" ")
+print("y = pow(x,2)+5")
+print("y = 2*x+4")
+basic_iteration_system_solver(x,y)
+
+
 #print(" ")
 #seccond(x)
 #print(" ")
@@ -105,4 +149,4 @@ def basic_iteration_system_solver(x,y):
 #y = 5.5
 #basic_iteration_system_solver(x,y)
 
-print(f_2(0))
+#print(f_2(0))
