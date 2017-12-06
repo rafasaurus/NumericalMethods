@@ -146,115 +146,6 @@ def getB_index(featureRows,df,global_iter):
     S=findsubsets(S, global_iter)
     return S
 
-
-def computeN(N,df,Fisher_bool):#computes regression for N variables
-    featureSize = df.__len__()
-    featureRows = 3
-    X1 = df['X1']
-    X2 = df['X2']
-    X3 = df['X3']
-    Y = df['Y']
-    X_ = np.zeros(shape=(3, featureSize))
-    X_[0] = X1
-    X_[1] = X2
-    X_[2] = X3
-
-    global_iter = featureRows
-    dof = featureRows  # var that has been used for comuting SSR,SSE... for degrees of freedom
-
-    maxes_index = 0
-    maxes = np.zeros(shape=(global_iter))
-
-    while global_iter != 0 and Fisher_bool==1:
-
-
-        c=combinatorial(featureRows,global_iter)
-        #print("c=",c)
-
-        B_indexes=getB_index(featureRows, df, global_iter)
-        print("B_indexes=",B_indexes)
-
-
-        list_=[]
-
-        for index in B_indexes:
-            for index_of_index in index:
-
-                    #print(index_of_index)
-                    list_.append(index_of_index)
-
-            print("  ")
-        #print(list_)
-        print("--------end----------")
-
-        middle_muffin = np.zeros(shape=(global_iter, featureSize))
-        #print("middle_muff",middle_muffin)
-        reg_i_step = 0
-
-        experimental_reg=0
-
-        r_squared_bool=True
-        for c_i in range(int(c)):#0
-            for regression_i in range(global_iter):
-                if global_iter==featureRows:
-                    middle_muffin[regression_i] = X_[list_[regression_i]-1]
-                else:
-                    middle_muffin[regression_i] = X_[list_[reg_i_step] - 1]
-                    reg_i_step+=1
-
-            n = global_iter + 1
-            #n = featureRows + 1  # number of feature rows +1 for b0,b1,b2...
-            X = COMPUTE_REGRESSION_X(middle_muffin, global_iter, featureSize, n)
-            vector = COMPUTE_Y(Y, middle_muffin, global_iter +1, featureSize)
-
-            inverse_arr = INVERSE_MATRIX(X, n)
-
-            B = np.matmul(inverse_arr, vector)
-            append_ = np.zeros(shape=(featureRows+1-B.__len__()))
-            B = np.append(B,append_)
-            # print()
-            print("B=",B)
-
-            each_reg=int(list_.__len__()/c)
-            y_final = np.zeros(shape=(featureSize))
-
-            for each_reg_i in range(each_reg):
-                print("list_exp = ",list_[experimental_reg])
-                for i in range(featureSize):
-                    for c_i_i in range(1,featureRows):
-                        if c_i_i==0:
-                            y_final[i] = y_final+B[0]
-                        y_final[i] = y_final[i] + B[list_[c_i_i]] * X_[list_[experimental_reg]-1][i]
-                experimental_reg = experimental_reg + 1
-            print(y_final)
-
-            if (r_squared_bool):
-                r_squared_bool=False
-                max=RSquared(y_final,featureSize)
-
-            if (RSquared(y_final,featureSize)>max):
-                max=RSquared(y_final,featureSize)
-            print("r_squared= ", RSquared(y_final,featureSize))
-
-        global_iter = global_iter - 1
-        print("max=",max)
-        maxes[maxes_index]=max
-        maxes_index = maxes_index+1
-        dof_Fisher = featureSize - featureRows - 1
-        for q in range(featureRows-1):
-            FISHER=((pow(maxes[q],2)-pow(maxes[q+1],2))/dof_Fisher)/(1-pow(maxes[q],2))
-            print("FISHER","i=",featureRows-q,"j=",featureRows-q-1,FISHER)
-            if (FISHER>F_TABLE):
-                print("")
-                print("the best subset regression is ", "i=", featureRows - q, "j=", featureRows - q - 1, FISHER)
-                Fisher_bool = 0
-                break
-    print("maxes=",maxes)
-
-
-#def Extended_R_Squared(df,data_cols):
-
-
 def include(N,df):
     X1 = df['X1']
     X2 = df['X2']
@@ -330,17 +221,19 @@ def include(N,df):
                             max_j = j
 
             to_line_reg_df = df[max_corr_string].values[:, np.newaxis]
+            #print("to_line_reg=",to_line_reg_df)
             featureSize = len(to_line_reg_df)
             featureCols = 1
             x_ = np.zeros(shape=(0, featureSize))
             x_ = np.append(x_, to_line_reg_df)
-            #x_ = np.append(x_, x2)
+            x_ = np.append(x_, df[column])
+            x_ = x_.reshape(2,featureSize)
             # np.concatenate((x_, x1))
-
+            #print("x++++",x_)
             # target data is array of shape (n,)
-            y = df['Y'].values
+            y = df['Y'].values #//////////////////////////////////////////////////////////
             x_ = x_.reshape(featureSize, -featureCols)  # reshaping for .fit method
-            #print(x_)
+            #print("x",x_)
             ## your code for regression
             regr = LinearRegression()
             regr.fit(x_, y)

@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f566241-92fd-4244-9fc7-aa39f84f2b02" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IKT_2.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/desicion making images.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NewtonEquationSolver.py" afterPath="$PROJECT_DIR$/NewtonEquationSolver.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SystemModeling/inserting_method.py" afterPath="$PROJECT_DIR$/SystemModeling/inserting_method.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,16 +43,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DepthModel.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SystemModeling/DepthModel.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="4" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="NewtonEquationSolver.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NewtonEquationSolver.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -66,13 +53,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IKT_2.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IKT_2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IKT_2.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="518">
               <caret line="39" column="20" lean-forward="false" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inserting_method.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SystemModeling/inserting_method.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="500">
+              <caret line="259" column="45" lean-forward="true" selection-start-line="259" selection-start-column="45" selection-end-line="259" selection-end-column="45" />
+              <folding>
+                <element signature="e#98#116#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -153,6 +152,7 @@
       <find>compute</find>
       <find>reshape</find>
       <find>re</find>
+      <find>column</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -167,11 +167,11 @@
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/SystemModeling/importing.py" />
         <option value="$PROJECT_DIR$/SystemModeling/test.py" />
-        <option value="$PROJECT_DIR$/SystemModeling/inserting_method.py" />
         <option value="$PROJECT_DIR$/NewtonIterations.py" />
         <option value="$PROJECT_DIR$/NewtonEquationSolver.py" />
         <option value="$PROJECT_DIR$/desicion making images.py" />
         <option value="$PROJECT_DIR$/IKT_2.py" />
+        <option value="$PROJECT_DIR$/SystemModeling/inserting_method.py" />
       </list>
     </option>
   </component>
@@ -231,7 +231,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Python.IKT_2">
+  <component name="RunManager" selected="Python.inserting_method">
     <configuration default="false" name="inserting_method" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -460,11 +460,11 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.IKT_2" />
-        <item index="1" class="java.lang.String" itemvalue="Python.desicion making images" />
-        <item index="2" class="java.lang.String" itemvalue="Python.NewtonEquationSolver" />
-        <item index="3" class="java.lang.String" itemvalue="Python.NewtonIterations" />
-        <item index="4" class="java.lang.String" itemvalue="Python.inserting_method" />
+        <item index="0" class="java.lang.String" itemvalue="Python.inserting_method" />
+        <item index="1" class="java.lang.String" itemvalue="Python.IKT_2" />
+        <item index="2" class="java.lang.String" itemvalue="Python.desicion making images" />
+        <item index="3" class="java.lang.String" itemvalue="Python.NewtonEquationSolver" />
+        <item index="4" class="java.lang.String" itemvalue="Python.NewtonIterations" />
       </list>
     </recent_temporary>
   </component>
@@ -499,7 +499,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921812" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921812" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3600823" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2355967" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -833,13 +833,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SystemModeling/inserting_method.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5400">
-          <caret line="365" column="45" lean-forward="false" selection-start-line="365" selection-start-column="45" selection-end-line="365" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SystemModeling/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
@@ -927,6 +920,16 @@
           <caret line="39" column="20" lean-forward="false" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SystemModeling/inserting_method.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="259" column="45" lean-forward="true" selection-start-line="259" selection-start-column="45" selection-end-line="259" selection-end-column="45" />
+          <folding>
+            <element signature="e#98#116#0" expanded="true" />
           </folding>
         </state>
       </provider>
