@@ -7,6 +7,7 @@ import itertools
 import scipy.optimize as optimizaion
 from scipy.stats.stats import pearsonr,linregress
 from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
 
 F_TABLE = 0.0001
 def findsubsets(S,m):
@@ -146,12 +147,60 @@ def getB_index(featureRows,df,global_iter):
     S=findsubsets(S, global_iter)
     return S
 
-def include(N,df):
+def exclude(N,df):
     X1 = df['X1']
     X2 = df['X2']
     X3 = df['X3']
     Y = df['Y']
+    print(df.head())
+    for column in df:
+        if column =='X1' or column =='X2' or column =='Y':
+            '''
+            to_line_reg_df = df[column].values[:, np.newaxis]
+            print("to_line_reg=",to_line_reg_df)
+            featureSize = len(to_line_reg_df)
+            featureCols = 1
+            x_ = np.zeros(shape=(0, featureSize))
+            x_ = np.append(x_, to_line_reg_df)
+            #x_ = np.append(x_, df[column])
+            #x_ = x_.reshape(2, featureSize)
+            # np.concatenate((x_, x1))
+            # print("x++++",x_)
+            # target data is array of shape (n,)
+            y = df['Y'].values  # //////////////////////////////////////////////////////////
+            x_ = x_.reshape(featureSize, -featureCols)  # reshaping for .fit method
+            # print("x",x_)
+            ## your code for regression
+            regr = LinearRegression()
+            regr.fit(x_, y)
+            print("regr.coef_=",regr.coef_)
+            print("regr.intercept_=",regr.intercept_)
+            # computes y_hat
+            y_hat = y
+            for i in range(featureSize):
+                y_hat[i] = regr.intercept_
+                for j in range(featureCols):
+                    y_hat[i] += regr.coef_[j] * x_[i][j]
+            print("y_hat=", y_hat)
+            '''
+            R_df = df[['Y']].copy()
+            #R_df = pd.concat([R_df, df[[]]], axis=1)
+            R_df_copy = R_df
+            dat = df[[column]]  # pd.DataFrame({column: range(0, df.size)})
+            # R_df_copy = pd.concat([dat1, dat2], axis=1)
+            # data = dat_1.append(dat_2)
+            # R_df_copy.join(dat)
+            R_df_copy = pd.concat([R_df_copy, dat], axis=1)
+            # print(dat)
+            R_df_corr = R_df_copy.corr()
+            R_df_corr_numpy = R_df_corr.as_matrix()
+            print("R_df_corr_numpy=",R_df_copy.head())
 
+
+
+            del R_df_copy[column]
+
+    '''
     #print(np.corrcoef(Y,X1)[0,1])
     data_cols =0
     max_corr_string = "X1"
@@ -169,7 +218,8 @@ def include(N,df):
 
     #This computes a least-squares regression for two sets of measurements.
     slope, intercept, r_value, p_value, std_err = linregress(df[max_corr_string], df['Y'])
-
+    #plt.scatter(df['Y'],df[max_corr_string])
+    plt.show()
     #r_value ** 2 is r_squared
     fisher = (r_value**2)*(data_cols-2)/(1-r_value**2)
     print(fisher)
@@ -213,7 +263,9 @@ def include(N,df):
                         R_SQUARED_CYCLE = False
                         max = middle_var
                         max_j=j
+
                     else:
+
                         if (middle_var > max):
                             max = ((Q_[0][j])**2) / (Q_[0][0]*Q_[j][j])
                             max_j = j
@@ -260,6 +312,7 @@ def include(N,df):
 
             del R_df_copy[column]
         iter_q_iter+=1
+        '''
 
     #del R_df_copy['Unnamed']r
     #print(R_df_copy)
@@ -272,7 +325,8 @@ X1=df['X1']
 X2=df['X2']
 X3=df['X3']
 Y=df['Y']
-
+#plt.scatter(Y,X1)
+#plt.show()
 featureSize = df.__len__()
 featureRows = 3
 
@@ -289,8 +343,9 @@ X=COMPUTE_REGRESSION_X(muffin,featureRows,featureSize,n)
 N=4#regression for N variables
 Fisher_bool = 1
 #computeN(N,df,Fisher_bool)
-include(N,df)
+exclude(N,df)
 print("-----------------------")
 global_iter=featureRows
 getB_index(featureRows,df,global_iter)
+
 

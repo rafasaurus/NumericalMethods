@@ -46,6 +46,7 @@ for j in range(9):
         if (x[i][j] == r_i_j_index[i]):
             t_j[j] +=1
 
+
 print("t_j=",t_j)
 T_j = np.zeros(9)
 for i in range(9):
