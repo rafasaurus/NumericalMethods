@@ -154,7 +154,7 @@ def exclude(N,df):
     Y = df['Y']
     print(df.head())
     for column in df:
-        if column =='X1' or column =='X2' or column =='Y':
+        if column =='X1' or column =='X2' or column =='X3':
             '''
             to_line_reg_df = df[column].values[:, np.newaxis]
             print("to_line_reg=",to_line_reg_df)
@@ -196,9 +196,46 @@ def exclude(N,df):
             R_df_corr_numpy = R_df_corr.as_matrix()
             print("R_df_corr_numpy=",R_df_copy.head())
 
+            print("R_df_copy=",R_df_copy)
+            #computing regression
+            to_line_reg_df = df['Y'].values[:, np.newaxis]
+            # print("to_line_reg=",to_line_reg_df)
+            featureSize = len(to_line_reg_df)
+            featureCols = 1
+            x_ = np.zeros(shape=(0, featureSize))
+            x_ = np.append(x_, to_line_reg_df)
+            x_ = np.append(x_, df[column])
+            x_ = x_.reshape(2, featureSize)
+            # np.concatenate((x_, x1))
+            # print("x++++",x_)
+            # target data is array of shape (n,)
+            y = df['Y'].values  # //////////////////////////////////////////////////////////
+            x_ = x_.reshape(featureSize, -featureCols)  # reshaping for .fit method
+            # print("x",x_)
+            ## your code for regression
+            regr = LinearRegression()
+            regr.fit(x_, y)
 
+            # the correct coef is different from your findings
+            print('regr.coef=',regr.coef_)
+            print('intercept = ',regr.intercept_)
+            y_hat = y
+            for i in range(featureSize):
+                y_hat[i] = regr.intercept_
+                for j in range(featureCols):
+                    y_hat[i] += regr.coef_[j] * x_[i][j]
+            print("y_hat=", y_hat)
 
+            fisher_hat_q_m = ((RSquared(y_hat) ** 2) - RSquared(y) * (-3)) / (1 - RSquared(y_hat))
+            print("fisher== ", fisher_hat_q_m)
+            if (fisher_hat_q_m>F_TABLE):
+                print(" ")
+                print("բացառվում է")
+                print(column)
+                print(" ")
             del R_df_copy[column]
+
+
 
     '''
     #print(np.corrcoef(Y,X1)[0,1])
