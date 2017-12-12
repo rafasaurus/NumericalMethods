@@ -313,7 +313,7 @@ def include(N,df):
             R_SQUARED_CYCLE = True
 
             max_j = 0
-            max = .0
+            max = .
             for j in range(1,3):#(len(R_df_copy.columns)):
                 if j !=max_corr_place_counter:
                     middle_var = ((Q_[0][j]) ** 2) / (Q_[0][0] * Q_[j][j])

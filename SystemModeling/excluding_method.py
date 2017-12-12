@@ -9,7 +9,7 @@ from scipy.stats.stats import pearsonr,linregress
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 
-F_TABLE = 0.0001
+F_TABLE = 0.5
 def findsubsets(S,m):
     return set(itertools.combinations(S, m))
 
@@ -153,6 +153,7 @@ def exclude(N,df):
     X3 = df['X3']
     Y = df['Y']
     print(df.head())
+    R_df = df[['Y']].copy()
     for column in df:
         if column =='X1' or column =='X2' or column =='X3':
             '''
@@ -183,7 +184,7 @@ def exclude(N,df):
                     y_hat[i] += regr.coef_[j] * x_[i][j]
             print("y_hat=", y_hat)
             '''
-            R_df = df[['Y']].copy()
+
             #R_df = pd.concat([R_df, df[[]]], axis=1)
             R_df_copy = R_df
             dat = df[[column]]  # pd.DataFrame({column: range(0, df.size)})
@@ -194,9 +195,11 @@ def exclude(N,df):
             # print(dat)
             R_df_corr = R_df_copy.corr()
             R_df_corr_numpy = R_df_corr.as_matrix()
-            print("R_df_corr_numpy=",R_df_copy.head())
 
-            print("R_df_copy=",R_df_copy)
+            #print("R_df_corr_numpy=",R_df_copy.head())
+
+            #print("R_df_copy=",R_df_copy)
+
             #computing regression
             to_line_reg_df = df['Y'].values[:, np.newaxis]
             # print("to_line_reg=",to_line_reg_df)
@@ -224,16 +227,19 @@ def exclude(N,df):
                 y_hat[i] = regr.intercept_
                 for j in range(featureCols):
                     y_hat[i] += regr.coef_[j] * x_[i][j]
-            print("y_hat=", y_hat)
+            #print("y_hat=", y_hat)
 
             fisher_hat_q_m = ((RSquared(y_hat) ** 2) - RSquared(y) * (-3)) / (1 - RSquared(y_hat))
             print("fisher== ", fisher_hat_q_m)
-            if (fisher_hat_q_m>F_TABLE):
+            if (fisher_hat_q_m>=F_TABLE):
                 print(" ")
                 print("բացառվում է")
                 print(column)
                 print(" ")
-            del R_df_copy[column]
+                R_df = pd.concat([R_df, dat], axis=1)
+            else:
+                del R_df_copy[column]
+            print(R_df_copy.head())
 
 
 
