@@ -154,36 +154,9 @@ def exclude(N,df):
     Y = df['Y']
     print(df.head())
     R_df = df[['Y']].copy()
+    TO_ADD_FATURES=pd.DataFrame()
     for column in df:
         if column =='X1' or column =='X2' or column =='X3':
-            '''
-            to_line_reg_df = df[column].values[:, np.newaxis]
-            print("to_line_reg=",to_line_reg_df)
-            featureSize = len(to_line_reg_df)
-            featureCols = 1
-            x_ = np.zeros(shape=(0, featureSize))
-            x_ = np.append(x_, to_line_reg_df)
-            #x_ = np.append(x_, df[column])
-            #x_ = x_.reshape(2, featureSize)
-            # np.concatenate((x_, x1))
-            # print("x++++",x_)
-            # target data is array of shape (n,)
-            y = df['Y'].values  # //////////////////////////////////////////////////////////
-            x_ = x_.reshape(featureSize, -featureCols)  # reshaping for .fit method
-            # print("x",x_)
-            ## your code for regression
-            regr = LinearRegression()
-            regr.fit(x_, y)
-            print("regr.coef_=",regr.coef_)
-            print("regr.intercept_=",regr.intercept_)
-            # computes y_hat
-            y_hat = y
-            for i in range(featureSize):
-                y_hat[i] = regr.intercept_
-                for j in range(featureCols):
-                    y_hat[i] += regr.coef_[j] * x_[i][j]
-            print("y_hat=", y_hat)
-            '''
 
             #R_df = pd.concat([R_df, df[[]]], axis=1)
             R_df_copy = R_df
@@ -204,11 +177,15 @@ def exclude(N,df):
             to_line_reg_df = df['Y'].values[:, np.newaxis]
             # print("to_line_reg=",to_line_reg_df)
             featureSize = len(to_line_reg_df)
-            featureCols = 1
+            featureCols = R_df.shape[1]#R_df.columns
+
             x_ = np.zeros(shape=(0, featureSize))
             x_ = np.append(x_, to_line_reg_df)
             x_ = np.append(x_, df[column])
-            x_ = x_.reshape(2, featureSize)
+            for to_add in TO_ADD_FATURES:
+                x_ = np.append(x_,df[to_add])
+            #x_ = np.append(x_, df[column])
+            x_ = x_.reshape(featureCols+1, featureSize)
             # np.concatenate((x_, x1))
             # print("x++++",x_)
             # target data is array of shape (n,)
@@ -218,7 +195,7 @@ def exclude(N,df):
             ## your code for regression
             regr = LinearRegression()
             regr.fit(x_, y)
-
+            print("featureCols=",featureCols)
             # the correct coef is different from your findings
             print('regr.coef=',regr.coef_)
             print('intercept = ',regr.intercept_)
@@ -232,133 +209,17 @@ def exclude(N,df):
             fisher_hat_q_m = ((RSquared(y_hat) ** 2) - RSquared(y) * (-3)) / (1 - RSquared(y_hat))
             print("fisher== ", fisher_hat_q_m)
             if (fisher_hat_q_m>=F_TABLE):
-                print(" ")
-                print("բացառվում է")
-                print(column)
-                print(" ")
+                print("-----------")
+                print("ընդգրկվում է",column," փոփոխականը")
+                print("-----------")
                 R_df = pd.concat([R_df, dat], axis=1)
+                TO_ADD_FATURES = pd.concat([TO_ADD_FATURES, dat], axis=1)
             else:
+                print("-----------")
+                print("բացառվում է", column, " փոփոխականը")
+                print("-----------")
                 del R_df_copy[column]
             print(R_df_copy.head())
-
-
-
-    '''
-    #print(np.corrcoef(Y,X1)[0,1])
-    data_cols =0
-    max_corr_string = "X1"
-    max_corr = (np.corrcoef(df['X1'], df['Y'])[0, 1]) ** 2
-    max_corr_place_counter = 0
-    for column in df:
-        data_cols += 1
-        if (data_cols < N):
-            if ((np.corrcoef(df[column],df['Y'])[0,1])**2>max_corr):
-                max_corr = np.corrcoef(df[column],df['Y'])[0,1]
-                max_corr_string = column
-                max_corr_place_counter=data_cols
-            #print(np.corrcoef(df[column],df['Y'])[0,1])
-    print(max_corr_string)
-
-    #This computes a least-squares regression for two sets of measurements.
-    slope, intercept, r_value, p_value, std_err = linregress(df[max_corr_string], df['Y'])
-    #plt.scatter(df['Y'],df[max_corr_string])
-    plt.show()
-    #r_value ** 2 is r_squared
-    fisher = (r_value**2)*(data_cols-2)/(1-r_value**2)
-    print(fisher)
-    if (fisher < F_TABLE):
-        return 0
-    R_df = df[['Y']].copy()
-    R_df = pd.concat([R_df, df[[max_corr_string]]], axis=1)
-    R_df_copy=R_df
-    iter_q_iter=0
-
-    print("_______")
-    print(np.corrcoef(df['X1'],df['X2']))
-    print("pierce-----")
-    print(pearsonr(df['X1'],df['Y']))
-    print("endo")
-    for column in df:
-
-        if column != max_corr_string and column!='Y' and iter_q_iter!=0:
-            dat = df[[column]]#pd.DataFrame({column: range(0, df.size)})
-            #R_df_copy = pd.concat([dat1, dat2], axis=1)
-            #data = dat_1.append(dat_2)
-            #R_df_copy.join(dat)
-            R_df_copy = pd.concat([R_df_copy, dat], axis=1)
-            #print(dat)
-            R_df_corr = R_df_copy.corr()
-            R_df_corr_numpy = R_df_corr.as_matrix()
-            #R_df_corr_inverse=INVERSE_MATRIX(R_df_corr_numpy,_df_corr_numpy.size)
-            R_df_corr_inverse = INVERSE_MATRIX(R_df_corr_numpy,len(R_df_copy.columns))#np.linalg.inv (R_df_corr_numpy)
-            #print()
-            print((R_df_corr_inverse))
-            Q_ = R_df_corr_inverse
-
-            R_SQUARED_CYCLE = True
-
-            max_j = 0
-            max = .0
-            for j in range(1,3):#(len(R_df_copy.columns)):
-                if j !=max_corr_place_counter:
-                    middle_var = ((Q_[0][j]) ** 2) / (Q_[0][0] * Q_[j][j])
-                    if R_SQUARED_CYCLE == True:
-                        R_SQUARED_CYCLE = False
-                        max = middle_var
-                        max_j=j
-
-                    else:
-
-                        if (middle_var > max):
-                            max = ((Q_[0][j])**2) / (Q_[0][0]*Q_[j][j])
-                            max_j = j
-
-            to_line_reg_df = df[max_corr_string].values[:, np.newaxis]
-            #print("to_line_reg=",to_line_reg_df)
-            featureSize = len(to_line_reg_df)
-            featureCols = 1
-            x_ = np.zeros(shape=(0, featureSize))
-            x_ = np.append(x_, to_line_reg_df)
-            x_ = np.append(x_, df[column])
-            x_ = x_.reshape(2,featureSize)
-            # np.concatenate((x_, x1))
-            #print("x++++",x_)
-            # target data is array of shape (n,)
-            y = df['Y'].values #//////////////////////////////////////////////////////////
-            x_ = x_.reshape(featureSize, -featureCols)  # reshaping for .fit method
-            #print("x",x_)
-            ## your code for regression
-            regr = LinearRegression()
-            regr.fit(x_, y)
-
-
-            # the correct coef is different from your findings
-            print(regr.coef_)
-            print(regr.intercept_)
-            #computes y_hat
-            y_hat = y
-            for i in range(featureSize):
-                y_hat[i] = regr.intercept_
-                for j in range(featureCols):
-                    y_hat[i] += regr.coef_[j] * x_[i][j]
-            print("y_hat=",y_hat)
-            #y_hat_ = y# y hat with only b0+b1
-            #for i in range(featureSize):
-            #    y_hat[i] = regr.intercept_
-            #    for j in range(featureCols):
-            #        y_hat_[i] += regr.coef_[j] * x_[i][j]
-            #print("y_hat_=",y_hat)
-
-            fisher_hat_q_m = ((RSquared(y_hat)**2) - RSquared(y)*(-3))/(1-RSquared(y_hat))
-            print("fisher== ",fisher_hat_q_m)
-
-
-            del R_df_copy[column]
-        iter_q_iter+=1
-        '''
-
-    #del R_df_copy['Unnamed']r
-    #print(R_df_copy)
 
 
 #---------------------------------------program--------------------------------------------------------
