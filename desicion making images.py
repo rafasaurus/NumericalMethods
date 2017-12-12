@@ -1,6 +1,6 @@
 import numpy as np
 import math
-
+import matplotlib.pyplot as plt
 
 das = [2.5, 3.5, 3.5, 1.5, 2.5, 3.5, 3.5, 2.5, 1, 1.5, 2.5, 2.5, 1, 1.5, 2.5, 2.5, 1.5, 2, 2.5, 2];#9
 das0 = [2, 2.5, 2.5, 2, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2, 2, 2.5, 2, 1, 1, 1.5, 1, 0.5];#0
@@ -29,3 +29,9 @@ for i in range(10):
 	print(phi[i])
 print(" ")
 print(max(phi))
+das = np.array(arr[9])
+print(das)
+das = das.reshape(5,4)
+print(das)
+plt.imshow(das,cmap='gray',interpolation='nearest')
+plt.show()
