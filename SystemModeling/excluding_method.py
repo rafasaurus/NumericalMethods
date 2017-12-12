@@ -10,85 +10,12 @@ from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 
 F_TABLE = 0.5
-def findsubsets(S,m):
-    return set(itertools.combinations(S, m))
-
-def sp(arr, n):
-    s = 0
-    for k in range(n):
-        s += arr[k][k]
-    return s
-def nullfinder(pop, n):
-    val_ = True
-    for o in range(n):
-        for p in range(n):
-            if pop[o][p] != 0:
-                val_ = False
-                break
-    return val_
-
-#Faddeev inverse matrix
-def INVERSE_MATRIX(arr, n):
-    E = np.matrix(np.identity(n))
-    E = np.array(E)
-    print_val = -10
-    temp_arr = np.matrix(n, dtype=float)
-    temp_arr = np.array(temp_arr)
-    static_arr = arr
-    Bn = arr
-    for i in range(n):
-        P = sp(arr, n) / (i + 1)
-        if i == n - 1:
-            print_val = Bn / P
-        Bn = arr - (P * E)
-        arr = np.matmul(static_arr, Bn)
-        if nullfinder(arr, n):
-            print("the end")
-            break
-    return print_val
-
-def sumXY(arr1,arr2,n):
-    sum_ = 0
-    for i in range(n):
-        sum_ += arr1[i]*arr2[i]
-    return sum_
-
-def sumX(arr, n):
-    sum_ = 0
-    for i in range(n):
-        sum_ += arr[i]
-    return sum_
-
-def COMPUTE_REGRESSION_X(muffin, featureRows, featurSize, n): # featureRows =2 featureSize=5
-    x = np.zeros(shape=(n, n))
-    for i in range(n):
-        for j in range(n):
-            if i == 0 and j == 0:
-                x[i][i] = featureSize
-            elif j == 0 and i >= 1:#
-                x[i][j] = sumX(muffin[i - 1], featureSize)
-            elif i == 0 and j >= 1:
-                x[i][j] = sumX(muffin[j-1], featureSize)
-            #elif i > 0 and j > 0:
-            else:
-                x[i][j] = sumXY(muffin[i-1], muffin[j-1], featureSize)
-    return x
-
-def COMPUTE_Y(yp,muffin, n, featureSize):
-    y = np.zeros(n, dtype=float)
-    for i in range(n):
-        if i==0:
-            y[i] = sumX(yp,featureSize)
-        else:
-            y[i] = sumXY(yp,muffin[i-1],featureSize)
-    return y
 
 def mean(arr,n):
     s=0
     for i in range(n):
         s+=arr[i]
     return s/n
-
 #ռեգրեսիայով պայմանավորված միջին քառակուսային շեղումներ
 def SSR(arr,featureSize):
     arr_mean = mean(arr, featureSize)
@@ -109,44 +36,6 @@ def SS0(arr,featureSize):
 def RSquared(arr):
     featureSize=arr.__len__()
     return SSR(arr,featureSize)/SS0(arr,featureSize)
-
-#ռեգռեսիայով պայմանավորված դիսպերսիան
-def MSR(arr,featureSize,dof):
-    MSR_ = SSR(arr,featureSize)/(dof)# featureRows+1 is "degrees of freedom"
-    return MSR_
-
-#անհամաձայնեցումներով պայմանավորված միջին քառակուսային շեղումներ
-def SSE(yp,y_final,featureSize):
-    SSE_ = 0
-    for i in range(featureSize):
-        SSE_+=(y_final[i] - yp[i])*(y_final[i] - yp[i])
-    return SSE_
-
-#մնացորդային դիսպերսիայի վիճակագրական գնահատական, ազատության աստիճանը n-k-1
-def sigmaSquared(yp,y_final,feautreSize,dof):
-    sigmaSquared_ = SSE(yp,y_final,featureSize)/(featureSize-dof-1)
-    return sigmaSquared_
-
-#ֆիշերի չափանիշ
-def FISHER(yp,y_final,featureSize,dof):
-    F = MSR(y_final,featureSize,dof)/(sigmaSquared(yp,y_final,featureSize,dof))
-    return F
-#def FISHER_HAT():
-def fact(n):
-    fact_=1
-    for i in range(1,n+1):
-        fact_=fact_*i
-    return fact_
-
-def combinatorial(n,k):
-    return fact(n) / (fact(n - k) * fact(k))
-
-def getB_index(featureRows,df,global_iter):
-
-    S = [1, 2, 3]
-    S=findsubsets(S, global_iter)
-    return S
-
 def exclude(N,df):
     X1 = df['X1']
     X2 = df['X2']
@@ -242,14 +131,8 @@ muffin[1]=X2
 muffin[2]=X3
 
 n=featureRows+1 #number of feature rows +1 for b0,b1,b2...
-X=COMPUTE_REGRESSION_X(muffin,featureRows,featureSize,n)
 
 N=4#regression for N variables
 Fisher_bool = 1
 #computeN(N,df,Fisher_bool)
 exclude(N,df)
-print("-----------------------")
-global_iter=featureRows
-getB_index(featureRows,df,global_iter)
-
-
