@@ -164,27 +164,33 @@ def include(N,df):
                 max_corr = np.corrcoef(df[column],df['Y'])[0,1]
                 max_corr_string = column
                 max_corr_place_counter=data_cols
+
             #print(np.corrcoef(df[column],df['Y'])[0,1])
-    print(max_corr_string)
 
     #This computes a least-squares regression for two sets of measurements.
     slope, intercept, r_value, p_value, std_err = linregress(df[max_corr_string], df['Y'])
 
     #r_value ** 2 is r_squared
     fisher = (r_value**2)*(data_cols-2)/(1-r_value**2)
-    print(fisher)
+    print("ֆիշերի չափանիշը", max_corr_string, "փոփոխականի ընդգրկման դեպքում = ",fisher)
     if (fisher < F_TABLE):
         return 0
+    else :
+        print("-----------")
+        print("ընդգրկվում է", max_corr_string, " փոփոխականը")
+        print("-----------")
     R_df = df[['Y']].copy()
     R_df = pd.concat([R_df, df[[max_corr_string]]], axis=1)
     R_df_copy=R_df
     iter_q_iter=0
 
-    print("_______")
-    print(np.corrcoef(df['X1'],df['X2']))
-    print("pierce-----")
-    print(pearsonr(df['X1'],df['Y']))
-    print("endo")
+    #print("_______")
+    #print(np.corrcoef(df['X1'],df['X2']))
+    #print("pierce-----")
+    #print(pearsonr(df['X1'],df['Y']))
+    #print("endo")
+    R_df = df[['Y']].copy()
+    TO_ADD_FATURES = pd.DataFrame()
     for column in df:
 
         if column != max_corr_string and column!='Y' and iter_q_iter!=0:
@@ -199,7 +205,7 @@ def include(N,df):
             #R_df_corr_inverse=INVERSE_MATRIX(R_df_corr_numpy,_df_corr_numpy.size)
             R_df_corr_inverse = INVERSE_MATRIX(R_df_corr_numpy,len(R_df_copy.columns))#np.linalg.inv (R_df_corr_numpy)
             #print()
-            print((R_df_corr_inverse))
+            #print((R_df_corr_inverse))
             Q_ = R_df_corr_inverse
 
             R_SQUARED_CYCLE = True
@@ -238,15 +244,15 @@ def include(N,df):
 
 
             # the correct coef is different from your findings
-            print(regr.coef_)
-            print(regr.intercept_)
+            print("regr.coef_=",regr.coef_)
+            print("regr.intercept_=",regr.intercept_)
             #computes y_hat
             y_hat = y
             for i in range(featureSize):
                 y_hat[i] = regr.intercept_
                 for j in range(featureCols):
                     y_hat[i] += regr.coef_[j] * x_[i][j]
-            print("y_hat=",y_hat)
+            #print("y_hat=",y_hat)
             #y_hat_ = y# y hat with only b0+b1
             #for i in range(featureSize):
             #    y_hat[i] = regr.intercept_
@@ -255,10 +261,22 @@ def include(N,df):
             #print("y_hat_=",y_hat)
 
             fisher_hat_q_m = ((RSquared(y_hat)**2) - RSquared(y)*(-3))/(1-RSquared(y_hat))
-            print("fisher== ",fisher_hat_q_m)
+            #print("fisher== ",fisher_hat_q_m)
+            print("ֆիշերի չափանիշը", column, "փոփոխականի ընդգրկման դեպքում = ", fisher_hat_q_m)
 
 
-            del R_df_copy[column]
+            if (fisher_hat_q_m >= F_TABLE):
+                print("-----------")
+                print("ընդգրկվում է", column, " փոփոխականը")
+                print("-----------")
+                R_df = pd.concat([R_df, dat], axis=1)
+                TO_ADD_FATURES = pd.concat([TO_ADD_FATURES, dat], axis=1)
+            else:
+                print("-----------")
+                print("բացառվում է", column, " փոփոխականը")
+                print("-----------")
+                del R_df_copy[column]
+            print(R_df.head())
         iter_q_iter+=1
 
     #del R_df_copy['Unnamed']r
