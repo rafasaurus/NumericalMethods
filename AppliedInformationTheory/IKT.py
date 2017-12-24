@@ -82,9 +82,14 @@ for i in T2:
 T2=T2_1
 
 print("T2=",T2)
+
+
+
+
 print("ֆորմալ անջատված տարերի քանակ T4=",T4)
 #first matrix A^1
 print("----- 0 տակտի մատրից-----")
+
 print(arr)
 print()
 
@@ -100,7 +105,9 @@ while(np.array_equal(global_arr,compareZeroMatrix)==False):
     #print("boolean check = ", np.array_equal(global_arr,compareZeroMatrix))
     #print(global_arr )
 
-print("N=",N)
+print("մատրիցի աստիճանը՝ N=",N)
+T7=T4-N
+print("հաջորդ մատրիցնեռում ֆորմալ անջատվող տարրերի քանակը արաջին կարգի մատրիցի համար T7=",T7)# այն սյուննեռը վորոնք ամբողջովին 0 են
 print("-----հասանելիության մատրից-----")
 #print(matrix_sum)
 
