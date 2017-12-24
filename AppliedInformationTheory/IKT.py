@@ -1,5 +1,5 @@
 import numpy as np
-'''T4y 0akan syuneri qanakna'''
+'''T4y 0akan syuneri qanakna ֆորմալ անջատված տարերի քանակ'''
 
 np.set_printoptions(threshold=1000)
 
@@ -27,10 +27,12 @@ compareZeroVector = np.zeros(shape=(19),dtype=int)
 T1 = []
 print("compareZeroVector=",compareZeroVector)
 print(" eg  = ",arr[:,0])
+T4=0
 for j in range(19):
     if(arr[:,j].any()==compareZeroVector.any()):
         #print(j+1)
         T1.append(j+1)
+        T4+=1
 print("T1=",T1)
 
 T3 = []
@@ -45,18 +47,42 @@ T2 = []
 for i in range(24):
     thereIs = False
     for j in range(24):
+        local_bool = False
         if (x[i]==y[j]):
-            thereIs = True
-            break
+            thereIs=True
+            #for k in range(24):
+            #    if (y[k]==0 and x[k]==x[i]):
+            #        local_bool = True
+            #        break
+            #    else:
+            #        local_bool = False
+            #if (local_bool):
+            #    thereIs=True
+            #    break
+            #else:
+            #    thereIs=False
+
     if (thereIs):
         thereIsNotInT3 = True
-        for T3_i in T3:
-            if (x[i]==T3_i):
-                thereIsNotInT3 = False
+        for q in range(T3.__len__()):
+            if (x[i]==T3[q]):
+                for k in range(24):
+                    if (x[k]==T3[q] and y[k]==0):
+                        thereIsNotInT3 =False
+                    else:
+                        thereIsNotInT3 = True
         if (thereIsNotInT3):
             T2.append(x[i])
 
+#deleting dublicates in T2
+T2_1=[]
+for i in T2:
+    if i not in T2_1:
+        T2_1.append(i)
+T2=T2_1
+
 print("T2=",T2)
+print("ֆորմալ անջատված տարերի քանակ T4=",T4)
 #first matrix A^1
 print("----- 0 տակտի մատրից-----")
 print(arr)
