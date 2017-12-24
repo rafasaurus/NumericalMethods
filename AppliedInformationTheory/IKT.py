@@ -1,4 +1,5 @@
 import numpy as np
+'''T4y 0akan syuneri qanakna'''
 
 np.set_printoptions(threshold=1000)
 
@@ -19,7 +20,22 @@ for i in range(19):
                 arr[int(x[k])-1][int(y[k]-1)]=1
 
 
+
+
+compareZeroVector = np.zeros(shape=(19),dtype=int)
+
+T1 = []
+print("compareZeroVector=",compareZeroVector)
+print(" eg  = ",arr[:,0])
+for j in range(19):
+    if(arr[:,j].any()==compareZeroVector.any()):
+        #print(j+1)
+        T1.append(j+1)
+print("T1=",T1)
+
+
 #first matrix A^1
+print("----- 0 տակտի մատրից-----")
 print(arr)
 print()
 
@@ -31,12 +47,9 @@ while(np.array_equal(global_arr,compareZeroMatrix)==False):
     matrix_sum += global_arr
     global_arr=np.matmul(global_arr,arr)
     N += 1
-    print("n=", N)
-    print("boolean check = ", np.array_equal(global_arr,compareZeroMatrix))
-    print(global_arr )
-
-
-    #print(global_arr)
+    #print("n=", N)
+    #print("boolean check = ", np.array_equal(global_arr,compareZeroMatrix))
+    #print(global_arr )
 
 print("N=",N)
 print("-----հասանելիության մատրից-----")
