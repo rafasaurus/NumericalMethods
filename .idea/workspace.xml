@@ -34,8 +34,8 @@
       <file leaf-file-name="IKT.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AppliedInformationTheory/IKT.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="110" column="47" lean-forward="false" selection-start-line="110" selection-start-column="47" selection-end-line="110" selection-end-column="47" />
+            <state relative-caret-position="144">
+              <caret line="122" column="144" lean-forward="false" selection-start-line="122" selection-start-column="144" selection-end-line="122" selection-end-column="144" />
               <folding />
             </state>
           </provider>
@@ -105,7 +105,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="526" />
+    <option name="x" value="65" />
     <option name="y" value="-4" />
     <option name="width" value="1855" />
     <option name="height" value="1084" />
@@ -529,8 +529,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AppliedInformationTheory/IKT.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="110" column="47" lean-forward="false" selection-start-line="110" selection-start-column="47" selection-end-line="110" selection-end-column="47" />
+        <state relative-caret-position="144">
+          <caret line="122" column="144" lean-forward="false" selection-start-line="122" selection-start-column="144" selection-end-line="122" selection-end-column="144" />
           <folding />
         </state>
       </provider>
