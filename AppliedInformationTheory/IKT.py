@@ -84,7 +84,23 @@ T2=T2_1
 print("T2=",T2)
 
 
-
+T5=0
+lol=0
+for i in range(24):
+    for j in range(i+1,24):
+        if (x[i]==x[j] and y[j]!=0):
+            lol=1
+            '''
+            local_bool=True
+            for T1_i in T1:
+                if(x[j]==T1_i):
+                    local_bool=False
+                    break
+            if(local_bool):
+            '''
+            T5+=1
+print("T5=",T5)
+print("lol=",lol)
 
 print("ֆորմալ անջատված տարերի քանակ T4=",T4)
 #first matrix A^1
