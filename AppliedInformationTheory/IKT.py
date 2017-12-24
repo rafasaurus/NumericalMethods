@@ -33,7 +33,30 @@ for j in range(19):
         T1.append(j+1)
 print("T1=",T1)
 
+T3 = []
+for i in range(24):
+    thereIs=False
+    if(y[i]==0):
+        T3.append(x[i])
 
+print("T3=",T3)
+
+T2 = []
+for i in range(24):
+    thereIs = False
+    for j in range(24):
+        if (x[i]==y[j]):
+            thereIs = True
+            break
+    if (thereIs):
+        thereIsNotInT3 = True
+        for T3_i in T3:
+            if (x[i]==T3_i):
+                thereIsNotInT3 = False
+        if (thereIsNotInT3):
+            T2.append(x[i])
+
+print("T2=",T2)
 #first matrix A^1
 print("----- 0 տակտի մատրից-----")
 print(arr)
@@ -53,7 +76,8 @@ while(np.array_equal(global_arr,compareZeroMatrix)==False):
 
 print("N=",N)
 print("-----հասանելիության մատրից-----")
-print(matrix_sum)
+#print(matrix_sum)
+
 #print("debug=",global_arr)
 #global_arr=arr
 #while global_arr.any() != zeros.any():
