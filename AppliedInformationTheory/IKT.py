@@ -48,6 +48,7 @@ for i in range(25):
 
 print("T3=",T3)
 
+
 T2 = []
 for i in range(25):
     thereIs = False
@@ -55,17 +56,7 @@ for i in range(25):
         local_bool = False
         if (x[i]==y[j]):
             thereIs=True
-            #for k in range(24):
-            #    if (y[k]==0 and x[k]==x[i]):
-            #        local_bool = True
-            #        break
-            #    else:
-            #        local_bool = False
-            #if (local_bool):
-            #    thereIs=True
-            #    break
-            #else:
-            #    thereIs=False
+
 
     if (thereIs):
         thereIsNotInT3 = True
@@ -120,7 +111,7 @@ print("միջանկյալ տարերի գործակիցը k_m=",k_m)# իչքան
 k_n_k =T5/r
 print("նեռքին կապակցվածության գործակիցը k_n_k=",k_n_k)# որքան մոտ է 1 ին այնքան ներքին կապակցվածության աստիճանը բարձռ է
 k_4=2*T6/(T3.__len__()*(T3.__len__()-1))
-print("ինֆորմացիայի ավելցուկային աստիճանը k_4=",k_4)# որքան մոտ է 0ին նշանակում է համակարգում ելքային տարրերի միջև ինֆորմացիայի ավելցուկը քիչ է 
+print("ինֆորմացիայի ավելցուկային աստիճանը k_4=",k_4)# որքան մոտ է 0ին նշանակում է համակարգում ելքային տարրերի միջև ինֆորմացիայի ավելցուկը քիչ է
 #first matrix A^1
 print("----- 0 տակտի մատրից-----")
 
@@ -140,17 +131,6 @@ while(np.array_equal(global_arr,compareZeroMatrix)==False):
     #print(global_arr )
 
 print("մատրիցի աստիճանը՝ N=",N)
-T7=T4-N
+T7=T4-1
 print("հաջորդ մատրիցնեռում ֆորմալ անջատվող տարրերի քանակը արաջին կարգի մատրիցի համար T7=",T7)# այն սյուննեռը վորոնք ամբողջովին 0 են
 print("-----հասանելիության մատրից-----")
-#print(matrix_sum)
-
-#print("debug=",global_arr)
-#global_arr=arr
-#while global_arr.any() != zeros.any():
-#    global_arr =np.matmul(global_arr,global_arr)
-#    print(global_arr)
-
-#if all([v==0 for v in arr]):
-#    global_arr =np.matmul(global_arr,global_arr)
-#    print(global_arr)
