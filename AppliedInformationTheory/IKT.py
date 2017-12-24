@@ -97,7 +97,18 @@ for i in range(25):
                 T5+=1
 print("նեքին կապերի թիվը T5=",T5)
 
-
+T6=0
+for i in range(25):
+    for j in range(i+1,25):
+        if (x[i]==x[j] and y[j]==0):
+            local_bool=True
+            for T1_i in T1:
+                if(x[j]==T1_i):
+                    local_bool=False
+                    break
+            if(local_bool):
+                T6+=1
+print("ելքային կապերի միջև տարրերի կապերի թիվը T6=",T6)
 
 print("ֆորմալ անջատված տարերի քանակ T4=",T4)
 #first matrix A^1
