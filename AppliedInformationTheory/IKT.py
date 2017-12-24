@@ -7,14 +7,14 @@ arr = np.zeros(shape=(19,19),dtype=int)
 compareZeroMatrix = np.zeros(shape=(19,19),dtype=int)
 zeros=arr
 #x = np.array([1, 1, 2, 2, 3, 4, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 16, 17, 18, 19], np.float)
-x = np.array([1, 1,  2,  2,  3,  3, 4,  4, 5,  6, 7,  8, 9, 10,11,12, 13, 14, 15, 16,16,17,18,19], np.int)
-y = np.array([8, 11, 13, 12, 16, 5, 14, 6, 15, 7, 19, 9, 0, 9, 19, 7, 16, 18, 14, 17, 0, 0, 0, 0], np.int)# 24 elements
+x = np.array([1, 1,  2,  2,  3,  3, 4,  4, 5,  6, 7,  8, 9, 10,11,12, 12, 13, 14, 15, 16,16,17,18,19], np.int)
+y = np.array([8, 11, 13, 12, 16, 5, 14, 6, 15, 7, 19, 9, 0, 9, 19, 7, 10, 16, 18, 14, 17, 0, 0, 0, 0], np.int)# 24 elements
 x_temp=9
 y_temp=0
 
 for i in range(19):
     for j in range(19):
-        for k in range(24):
+        for k in range(25):
             if y[k]-1 !=0 and y[k]!=0:
                 #if ((int(y[k]-1)==19 and int(x[k])-1)==19):
                 arr[int(x[k])-1][int(y[k]-1)]=1
@@ -36,7 +36,7 @@ for j in range(19):
 print("T1=",T1)
 
 T3 = []
-for i in range(24):
+for i in range(25):
     thereIs=False
     if(y[i]==0):
         T3.append(x[i])
@@ -44,9 +44,9 @@ for i in range(24):
 print("T3=",T3)
 
 T2 = []
-for i in range(24):
+for i in range(25):
     thereIs = False
-    for j in range(24):
+    for j in range(25):
         local_bool = False
         if (x[i]==y[j]):
             thereIs=True
@@ -66,7 +66,7 @@ for i in range(24):
         thereIsNotInT3 = True
         for q in range(T3.__len__()):
             if (x[i]==T3[q]):
-                for k in range(24):
+                for k in range(25):
                     if (x[k]==T3[q] and y[k]==0):
                         thereIsNotInT3 =False
                     else:
@@ -85,22 +85,19 @@ print("T2=",T2)
 
 
 T5=0
-lol=0
-for i in range(24):
-    for j in range(i+1,24):
+for i in range(25):
+    for j in range(i+1,25):
         if (x[i]==x[j] and y[j]!=0):
-            lol=1
-            '''
             local_bool=True
             for T1_i in T1:
                 if(x[j]==T1_i):
                     local_bool=False
                     break
             if(local_bool):
-            '''
-            T5+=1
-print("T5=",T5)
-print("lol=",lol)
+                T5+=1
+print("նեքին կապերի թիվը T5=",T5)
+
+
 
 print("ֆորմալ անջատված տարերի քանակ T4=",T4)
 #first matrix A^1
