@@ -49,9 +49,9 @@ def train_neural_network(x):
     cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=prediction, labels=y))
     optimizer = tf.train.AdamOptimizer().minimize(cost)
 
-    hm_epochs = 10
+    hm_epochs = 50
     with tf.Session() as sess:
-        # OLD:
+        # OLD:2
         # sess.run(tf.initialize_all_variables())
         # NEW:
         sess.run(tf.global_variables_initializer())
