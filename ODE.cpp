@@ -1,5 +1,3 @@
-P//ODE stands for Ordinary diferential equation
-
 #include "stdafx.h"
 #include  <iostream>
 #include  <math.h>
